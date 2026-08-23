@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no"
+    >
+
+    <title>Poetry Factory</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- Phaser Canvas -->
+    <div id="game-container"></div>
+
+
+    <!-- =====================================================
+         HOVER TRIGGERS
+         Invisible zones used to open collapsed panels.
+         ===================================================== -->
+
+    <div id="left-hover-trigger"></div>
+    <div id="bottom-hover-trigger"></div>
+
+
+    <!-- =====================================================
+         LEFT MACHINE PANEL
+         ===================================================== -->
+
+    <aside id="machine-panel" class="side-panel collapsed">
+
+        <div class="panel-edge-label">
+            MACHINES
+        </div>
+
+        <div class="panel-content">
+
+            <div class="panel-title">
+                POETRY FACTORY
+            </div>
+
+
+            <div class="machine-section">
+
+
+                <!-- Letter Resource -->
+
+                <div class="machine-item letter-source-item">
+
+                    <div class="machine-name">
+                        Letter Resource
+                    </div>
+
+                    <div class="machine-description">
+                        LETTER OUTPUT
+                    </div>
+
+                    <div class="letter-input-row">
+
+                        <input
+                            id="letter-input"
+                            maxlength="1"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="a-z"
+                        >
+
+                        <button id="create-letter-btn">
+                            CREATE
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="letter-error"
+                        class="letter-error"
+                    ></div>
+
+                </div>
+
+
+                <!-- Letter Differential -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="splitter"
+                >
+                    <span class="machine-name-main">
+                        Letter Differential
+                    </span>
+
+                    <span class="machine-type">
+                        LETTER ↔ LETTER
+                    </span>
+                </button>
+
+
+                <!-- Primary -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="primary"
+                >
+                    <span class="machine-name-main">
+                        Primary Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        LETTER → MULTIPLE LETTERS
+                    </span>
+                </button>
+
+
+                <!-- Word -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="word"
+                >
+                    <span class="machine-name-main">
+                        Word Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        LETTER → WORD
+                    </span>
+                </button>
+
+
+                <!-- Intermediate -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="intermediate"
+                >
+                    <span class="machine-name-main">
+                        Intermediate Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        WORD → MULTIPLE WORDS
+                    </span>
+                </button>
+
+
+                <!-- Sentence -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="sentence"
+                >
+                    <span class="machine-name-main">
+                        Sentence Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        WORD → SENTENCE
+                    </span>
+                </button>
+
+
+                <!-- Symbol Modifier -->
+
+                <div class="machine-item symbol-modifier-item">
+
+                    <div class="machine-name">
+                        Symbol Modifier
+                    </div>
+
+                    <div class="machine-description">
+                        SENTENCE → SENTENCE
+                    </div>
+
+                    <div class="symbol-input-row">
+
+                        <input
+                            id="symbol-input"
+                            maxlength="1"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="."
+                        >
+
+                        <button id="create-symbol-modifier-btn">
+                            CREATE
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="symbol-error"
+                        class="letter-error"
+                    ></div>
+
+                </div>
+
+
+                <!-- Advanced -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="advanced"
+                >
+                    <span class="machine-name-main">
+                        Advanced Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        SENTENCE → MULTIPLE SENTENCES
+                    </span>
+                </button>
+
+
+                <!-- Stanza -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="stanza"
+                >
+                    <span class="machine-name-main">
+                        Stanza Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        SENTENCE → STANZA
+                    </span>
+                </button>
+
+
+                <!-- Primal -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="primal"
+                >
+                    <span class="machine-name-main">
+                        Primal Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        STANZA → MULTIPLE STANZAS
+                    </span>
+                </button>
+
+
+                <!-- Poem -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="poem"
+                >
+                    <span class="machine-name-main">
+                        Poem Synthesizer
+                    </span>
+
+                    <span class="machine-type">
+                        STANZA → POEM
+                    </span>
+                </button>
+
+            </div>
+        </div>
+    </aside>
+
+
+    <!-- =====================================================
+         NODE CONTROLS
+         ===================================================== -->
+
+    <div
+        id="node-controls"
+        class="node-controls disabled"
+    >
+
+        <span id="selected-node-label">
+            NO NODE
+        </span>
+
+        <button id="orientation-horizontal">
+            HORIZONTAL
+        </button>
+
+        <button id="orientation-vertical">
+            VERTICAL
+        </button>
+
+        <button id="reverse-node">
+            REVERSE
+        </button>
+
+        <button id="delete-node">
+            DELETE
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         POEM LEVER
+         ===================================================== -->
+
+    <div id="lever-shell">
+
+        <div id="lever-status">
+            OFFLINE
+        </div>
+
+        <button
+            id="poem-lever"
+            class="poem-lever disabled"
+            aria-label="Generate Poem"
+        >
+
+            <span class="lever-track"></span>
+            <span class="lever-base"></span>
+            <span class="lever-handle"></span>
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ZOOM CONTROLS
+         ===================================================== -->
+
+    <div id="zoom-controls">
+
+        <button
+            id="zoom-out"
+            title="Zoom Out"
+        >
+            −
+        </button>
+
+        <div id="zoom-label">
+            100%
+        </div>
+
+        <button
+            id="zoom-in"
+            title="Zoom In"
+        >
+            +
+        </button>
+
+        <button
+            id="zoom-reset"
+            title="Reset Zoom"
+        >
+            RESET
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         BOTTOM WORKSPACE PANEL
+         ===================================================== -->
+
+    <div
+        id="bottom-panel"
+        class="bottom-panel collapsed"
+    >
+
+        <div class="bottom-edge-label">
+            WORKSPACE
+        </div>
+
+
+        <div class="bottom-content">
+
+            <button id="current-page-btn">
+                CURRENT
+            </button>
+
+            <button id="template-1-btn">
+                TEMPLATE 1
+            </button>
+
+            <button id="template-2-btn">
+                TEMPLATE 2
+            </button>
+
+            <div class="bottom-separator"></div>
+
+            <button id="clear-btn">
+                CLEAR
+            </button>
+
+            <button id="save-btn">
+                SAVE
+            </button>
+
+            <button id="load-btn">
+                LOAD
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JSON File Input -->
+
+    <input
+        id="json-file-input"
+        type="file"
+        accept=".json,application/json"
+        hidden
+    >
+
+
+    <!-- =====================================================
+         POEM OUTPUT
+         ===================================================== -->
+
+    <div
+        id="poem-output-overlay"
+        class="hidden"
+    >
+
+        <div id="poem-output-window">
+
+            <div class="poem-output-header">
+
+                <span>
+                    GENERATED POEM
+                </span>
+
+                <button id="close-poem-output">
+                    ×
+                </button>
+
+            </div>
+
+            <div id="poem-output-content"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Toast -->
+
+    <div
+        id="toast"
+        class="toast"
+    ></div>
+
+</div>
+
+
+<script src="./phaser/engine/phaser.min.js"></script>
+<script src="./app.js"></script>
+
+</body>
+</html>
