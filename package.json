@@ -1,0 +1,29 @@
+{
+  "name": "poetryfactory",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/copy-static.mjs",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neko12138/PoetryFactory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Neko12138/PoetryFactory/issues"
+  },
+  "homepage": "https://github.com/Neko12138/PoetryFactory#readme",
+  "dependencies": {
+    "dictionary-en": "^4.0.0",
+    "nspell": "^2.1.5"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

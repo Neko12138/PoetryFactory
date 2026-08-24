@@ -16,30 +16,30 @@
 
     --ui-font:
         clamp(
-            12px,
-            calc(0.55vw + 0.3vh),
-            17px
+            16px,
+            calc(0.74vw + 0.40vh),
+            23px
         );
 
     --ui-font-small:
         clamp(
-            10px,
-            calc(0.42vw + 0.22vh),
-            14px
+            13.5px,
+            calc(0.57vw + 0.30vh),
+            19px
         );
 
     --ui-font-tiny:
         clamp(
-            9px,
-            calc(0.34vw + 0.18vh),
-            12px
+            12px,
+            calc(0.46vw + 0.24vh),
+            16px
         );
 
     --ui-font-large:
         clamp(
-            14px,
-            calc(0.68vw + 0.3vh),
-            20px
+            19px,
+            calc(0.92vw + 0.40vh),
+            27px
         );
 }
 
@@ -333,6 +333,149 @@ button {
     background: #161616;
 
     border-color: #888;
+}
+
+
+/* ============================================================
+   LIMITERS
+   ============================================================ */
+
+.limiter-section {
+    margin-top:
+        clamp(
+            22px,
+            2.5vh,
+            34px
+        );
+
+    padding-top:
+        clamp(
+            14px,
+            1.5vh,
+            20px
+        );
+
+    border-top: 1px solid #343434;
+}
+
+
+.limiter-section-title {
+    margin-bottom:
+        clamp(
+            16px,
+            2vh,
+            24px
+        );
+
+    color: #ffffff;
+
+    font-size: var(--ui-font-large);
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+}
+
+
+.limiter-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap:
+        clamp(
+            10px,
+            0.8vw,
+            15px
+        );
+
+    width: 100%;
+
+    padding:
+        clamp(
+            11px,
+            1.1vh,
+            15px
+        )
+        0;
+
+    cursor: pointer;
+
+    border-bottom: 1px solid #1e1e1e;
+}
+
+
+.limiter-copy {
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.limiter-name {
+    margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: var(--ui-font);
+
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+}
+
+
+.limiter-description {
+    color: #9c9c9c;
+
+    font-size: var(--ui-font-small);
+
+    line-height: 1.45;
+}
+
+
+.limiter-checkbox {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    flex: 0 0 auto;
+
+    width:
+        clamp(
+            17px,
+            1.2vw,
+            22px
+        );
+
+    height:
+        clamp(
+            17px,
+            1.2vw,
+            22px
+        );
+
+    margin: 2px 0 0 0;
+
+    background: #050505;
+
+    border: 1px solid #8a8a8a;
+
+    cursor: pointer;
+}
+
+
+.limiter-checkbox:hover {
+    border-color: #ffffff;
+}
+
+
+.limiter-checkbox:checked {
+    background: #d6d6d6;
+
+    box-shadow: inset 0 0 0 4px #050505;
 }
 
 

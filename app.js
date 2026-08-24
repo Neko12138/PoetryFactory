@@ -1,3 +1,8 @@
+import nspell from "nspell";
+import dictionaryAff from "./node_modules/dictionary-en/index.aff?raw";
+import dictionaryDic from "./node_modules/dictionary-en/index.dic?raw";
+
+
 "use strict";
 
 /* ============================================================
@@ -50,11 +55,11 @@ const MACHINE_DEFINITIONS = Object.freeze({
     },
 
     splitter: {
-        title: "LETTER",
-        subtitle: "DIFFERENTIAL",
+        title: "REPLICATOR",
+        subtitle: "COPY x3",
         kind: "splitter",
-        inputType: TYPE.LETTER,
-        outputType: TYPE.LETTER
+        inputType: null,
+        outputType: null
     },
 
     primary: {
@@ -95,6 +100,14 @@ const MACHINE_DEFINITIONS = Object.freeze({
         kind: "modifier",
         inputType: TYPE.SENTENCE,
         outputType: TYPE.SENTENCE
+    },
+
+    randomizer: {
+        title: "RANDOMIZER",
+        subtitle: "",
+        kind: "randomizer",
+        inputType: TYPE.WORD,
+        outputType: TYPE.WORD
     },
 
     advanced: {
@@ -151,6 +164,16 @@ const NODE_SIZES = Object.freeze({
     synthVertical: {
         width: 184,
         height: 118
+    },
+
+    randomizerHorizontal: {
+        width: 180,
+        height: 130
+    },
+
+    randomizerVertical: {
+        width: 220,
+        height: 104
     }
 });
 
@@ -178,6 +201,13 @@ const ALLOWED_SYMBOL_MODIFIERS = Object.freeze([
 ]);
 
 
+const spellChecker =
+    nspell(
+        dictionaryAff,
+        dictionaryDic
+    );
+
+
 /* ============================================================
    DOM
    ============================================================ */
@@ -197,6 +227,17 @@ const DOM = {
     createSymbolModifierBtn:
         document.getElementById("create-symbol-modifier-btn"),
     symbolError: document.getElementById("symbol-error"),
+
+    limiterBlind: document.getElementById("limiter-blind"),
+    limiterBlindPlus: document.getElementById("limiter-blind-plus"),
+    limiterAncientPoetry:
+        document.getElementById("limiter-ancient-poetry"),
+    limiterSpellingCompulsion:
+        document.getElementById("limiter-spelling-compulsion"),
+    limiterAcrostic:
+        document.getElementById("limiter-acrostic"),
+    limiterAcrosticPlus:
+        document.getElementById("limiter-acrostic-plus"),
 
     lever: document.getElementById("poem-lever"),
     leverStatus: document.getElementById("lever-status"),
@@ -266,6 +307,35 @@ let toastTimer = null;
 
 let currentPageSnapshot = null;
 
+const LIMITER_MODE = Object.freeze({
+    NONE: "none",
+    BLIND: "blind",
+    BLIND_PLUS: "blindPlus"
+});
+
+const STAGE_SYNTHESIZERS = new Set([
+    "primary",
+    "word",
+    "intermediate",
+    "sentence",
+    "advanced",
+    "stanza",
+    "primal"
+]);
+
+let limiterMode =
+    LIMITER_MODE.NONE;
+
+let ancientPoetryEnabled = false;
+
+let spellingCompulsionEnabled = false;
+
+let acrosticEnabled = false;
+
+let acrosticPlusEnabled = false;
+
+let blindAnimationTimer = null;
+
 
 /* ============================================================
    SPECIAL AUDIO
@@ -299,6 +369,95 @@ function clamp(value, min, max) {
 }
 
 
+function isStageSynthesizer(node) {
+    return Boolean(
+        node &&
+        STAGE_SYNTHESIZERS.has(
+            node.machineType
+        )
+    );
+}
+
+
+function isLimiterAffectedNode(node) {
+    return Boolean(
+        isStageSynthesizer(
+            node
+        ) ||
+        node?.machineType === "randomizer"
+    );
+}
+
+
+function isSpellingConstrainedNode(node) {
+    return Boolean(
+        node &&
+        node.definition &&
+        node.definition.outputType ===
+            TYPE.WORD
+    );
+}
+
+
+function extractSpellingWords(text) {
+
+    if (
+        typeof text !==
+        "string"
+    ) {
+        return [];
+    }
+
+
+    return (
+        text
+            .toLowerCase()
+            .match(
+                /[a-z]+(?:'[a-z]+)?/g
+            ) || []
+    );
+}
+
+
+function normalizeSpellingWord(word) {
+
+    if (
+        typeof word !==
+        "string"
+    ) {
+        return "";
+    }
+
+
+    return word
+        .trim()
+        .toLowerCase()
+        .replace(
+            /^[^a-z']+|[^a-z']+$/g,
+            ""
+        );
+}
+
+
+function isWordSpelledCorrectly(word) {
+
+    const cleanWord =
+        normalizeSpellingWord(
+            word
+        );
+
+
+    if (!cleanWord) {
+        return false;
+    }
+
+
+    return spellChecker.correct(
+        cleanWord
+    );
+}
+
+
 function getResponsiveNodeFontSizes() {
 
     const width =
@@ -324,17 +483,27 @@ function getResponsiveNodeFontSizes() {
     return {
         title:
             Math.round(
-                16 * scale
+                22 * scale
             ),
 
         subtitle:
             Math.round(
-                11 * scale
+                14.5 * scale
+            ),
+
+        output:
+            Math.round(
+                16 * scale
             ),
 
         letter:
             Math.round(
-                34 * scale
+                46 * scale
+            ),
+
+        randomizer:
+            Math.round(
+                16 * scale
             )
     };
 }
@@ -402,6 +571,8 @@ class FactoryScene extends Phaser.Scene {
         this.globalOrientation = "horizontal";
         this.globalReversed = false;
 
+        this.evaluationRunId = 0;
+
         this.connectionGraphics = null;
 
         this.previewGraphics = null;
@@ -468,6 +639,7 @@ class FactoryScene extends Phaser.Scene {
             );
 
             this.updateNodeTypography();
+            this.refreshAllOutputDisplays();
             this.drawGrid();
             this.drawConnections();
         });
@@ -1050,6 +1222,26 @@ class FactoryScene extends Phaser.Scene {
                     fonts.letter
                 );
             }
+
+
+            if (node.outputText) {
+                node.outputText.setFontSize(
+                    Math.max(
+                        12,
+                        fonts.output
+                    )
+                );
+            }
+
+
+            if (node.randomizerText) {
+                node.randomizerText.setFontSize(
+                    Math.max(
+                        12,
+                        fonts.randomizer
+                    )
+                );
+            }
         }
 
 
@@ -1096,6 +1288,14 @@ class FactoryScene extends Phaser.Scene {
 
             applyResolution(
                 node.letterText
+            );
+
+            applyResolution(
+                node.outputText
+            );
+
+            applyResolution(
+                node.randomizerText
             );
         }
     }
@@ -1172,13 +1372,40 @@ class FactoryScene extends Phaser.Scene {
             titleText: null,
             subtitleText: null,
             letterText: null,
+            outputText: null,
+            randomizerText: null,
+            rhymeIndicator: null,
+            spellingIndicator: null,
+            acrosticIndicator: null,
 
             ports: [],
 
             inputPorts: [],
             outputPorts: [],
 
-            validOutput: false
+            validOutput: false,
+
+            rhymeValid: true,
+
+            spellingValid: true,
+
+            acrosticValid: true,
+
+            actualOutput: "",
+
+            displayOutput: "",
+
+            replicatedType: null,
+
+            replicatorInputPortId: null,
+
+            randomizerChoice: null,
+
+            randomizerChoiceRunId: -1,
+
+            randomizerDisplayA: "",
+
+            randomizerDisplayB: ""
         };
 
 
@@ -1250,6 +1477,158 @@ class FactoryScene extends Phaser.Scene {
         node.container.add(
             node.subtitleText
         );
+
+
+        if (
+            isStageSynthesizer(
+                node
+            )
+        ) {
+
+            node.outputText =
+                this.add.text(
+                    0,
+                    0,
+                    "",
+                    {
+                        fontFamily:
+                            'Consolas, "Courier New", monospace',
+                        fontSize:
+                            `${Math.max(
+                                12,
+                                fonts.output
+                            )}px`,
+                        color: "#eeeeee",
+                        align: "center",
+                        wordWrap: {
+                            width: 210,
+                            useAdvancedWrap: true
+                        }
+                    }
+                );
+
+            node.outputText.setOrigin(
+                0.5,
+                0.5
+            );
+
+            node.container.add(
+                node.outputText
+            );
+        }
+
+
+        if (
+            machineType ===
+            "stanza"
+        ) {
+
+            node.rhymeIndicator =
+                this.add.circle(
+                    0,
+                    0,
+                    6,
+                    0x555555
+                );
+
+            node.rhymeIndicator
+                .setStrokeStyle(
+                    1,
+                    0x999999,
+                    1
+                );
+
+            node.container.add(
+                node.rhymeIndicator
+            );
+        }
+
+
+        if (
+            isSpellingConstrainedNode(
+                node
+            )
+        ) {
+
+            node.spellingIndicator =
+                this.add.circle(
+                    0,
+                    0,
+                    6,
+                    0x555555
+                );
+
+            node.spellingIndicator
+                .setStrokeStyle(
+                    1,
+                    0x999999,
+                    1
+                );
+
+            node.container.add(
+                node.spellingIndicator
+            );
+        }
+
+
+        if (
+            machineType ===
+            "sentence"
+        ) {
+
+            node.acrosticIndicator =
+                this.add.circle(
+                    0,
+                    0,
+                    6,
+                    0x555555
+                );
+
+            node.acrosticIndicator
+                .setStrokeStyle(
+                    1,
+                    0x999999,
+                    1
+                );
+
+            node.container.add(
+                node.acrosticIndicator
+            );
+        }
+
+
+        if (
+            machineType ===
+            "randomizer"
+        ) {
+
+            node.randomizerText =
+                this.add.text(
+                    0,
+                    12,
+                    "",
+                    {
+                        fontFamily:
+                            'Consolas, "Courier New", monospace',
+                        fontSize:
+                            `${Math.max(
+                                12,
+                                fonts.randomizer
+                            )}px`,
+                        color: "#eeeeee",
+                        align: "center"
+                    }
+                );
+
+            node.randomizerText.setOrigin(
+                0.5,
+                0.5
+            );
+
+            node.container.add(
+                node.randomizerText
+            );
+        }
 
 
         if (
@@ -1444,32 +1823,113 @@ class FactoryScene extends Phaser.Scene {
             node.height =
                 NODE_SIZES.splitter.height;
         }
-        else {
+        else if (
+            def.kind === "randomizer"
+        ) {
 
             if (
                 node.orientation ===
-                "vertical"
+                "horizontal"
             ) {
                 node.width =
                     NODE_SIZES
-                        .synthVertical
+                        .randomizerHorizontal
                         .width;
 
                 node.height =
                     NODE_SIZES
-                        .synthVertical
+                        .randomizerHorizontal
                         .height;
             }
             else {
                 node.width =
                     NODE_SIZES
-                        .synthHorizontal
+                        .randomizerVertical
                         .width;
 
                 node.height =
                     NODE_SIZES
-                        .synthHorizontal
+                        .randomizerVertical
                         .height;
+            }
+        }
+        else {
+
+            if (
+                node.machineType === "poem"
+            ) {
+
+                if (
+                    node.orientation ===
+                    "vertical"
+                ) {
+                    node.width =
+                        NODE_SIZES
+                            .synthVertical
+                            .width;
+
+                    node.height =
+                        NODE_SIZES
+                            .synthVertical
+                            .height;
+                }
+                else {
+                    node.width =
+                        NODE_SIZES
+                            .synthHorizontal
+                            .width;
+
+                    node.height =
+                        NODE_SIZES
+                            .synthHorizontal
+                            .height;
+                }
+            }
+            else if (
+                isStageSynthesizer(
+                    node
+                )
+            ) {
+
+                const adaptiveSize =
+                    this.calculateAdaptiveNodeSize(
+                        node,
+                        node.displayOutput || ""
+                    );
+
+                node.width =
+                    adaptiveSize.width;
+
+                node.height =
+                    adaptiveSize.height;
+            }
+            else {
+
+                if (
+                    node.orientation ===
+                    "vertical"
+                ) {
+                    node.width =
+                        NODE_SIZES
+                            .synthVertical
+                            .width;
+
+                    node.height =
+                        NODE_SIZES
+                            .synthVertical
+                            .height;
+                }
+                else {
+                    node.width =
+                        NODE_SIZES
+                            .synthHorizontal
+                            .width;
+
+                    node.height =
+                        NODE_SIZES
+                            .synthHorizontal
+                            .height;
+                }
             }
         }
 
@@ -1689,15 +2149,184 @@ class FactoryScene extends Phaser.Scene {
         }
 
 
+        if (
+            node.definition.kind ===
+            "randomizer"
+        ) {
+
+            node.titleText.setPosition(
+                0,
+                -node.height / 2 + 24
+            );
+
+            node.subtitleText.setPosition(
+                0,
+                -node.height / 2 + 40
+            );
+
+            if (
+                node.randomizerText
+            ) {
+                node.randomizerText.setPosition(
+                    0,
+                    13
+                );
+            }
+
+            return;
+        }
+
+
         node.titleText.setPosition(
             0,
-            -7
+            -node.height / 2 + 22
         );
 
         node.subtitleText.setPosition(
             0,
-            8
+            -node.height / 2 + 39
         );
+
+        if (
+            node.outputText
+        ) {
+
+            node.outputText.setPosition(
+                0,
+                14
+            );
+
+            node.outputText.setWordWrapWidth(
+                Math.max(
+                    80,
+                    node.width - 32
+                )
+            );
+        }
+
+
+        if (
+            node.machineType ===
+                "stanza" &&
+            node.rhymeIndicator
+        ) {
+
+            node.rhymeIndicator
+                .setPosition(
+                    node.width / 2 - 14,
+                    -node.height / 2 + 14
+                );
+        }
+
+
+        if (
+            isSpellingConstrainedNode(
+                node
+            ) &&
+            node.spellingIndicator
+        ) {
+
+            node.spellingIndicator
+                .setPosition(
+                    node.width / 2 - 14,
+                    -node.height / 2 + 14
+                );
+        }
+
+
+        if (
+            node.machineType ===
+                "sentence" &&
+            node.acrosticIndicator
+        ) {
+
+            node.acrosticIndicator
+                .setPosition(
+                    node.width / 2 - 14,
+                    -node.height / 2 + 14
+                );
+        }
+    }
+
+
+    calculateAdaptiveNodeSize(
+        node,
+        text
+    ) {
+
+        const minimumWidth =
+            node.orientation === "vertical"
+                ? 184
+                : 132;
+
+        const minimumHeight =
+            node.orientation === "vertical"
+                ? 126
+                : 184;
+
+
+        if (!text) {
+            return {
+                width: minimumWidth,
+                height: minimumHeight
+            };
+        }
+
+
+        const lines =
+            String(text)
+                .split("\n");
+
+        const longestLine =
+            Math.max(
+                1,
+                ...lines.map(
+                    line =>
+                        line.length
+                )
+            );
+
+        const charactersPerLine =
+            24;
+
+        const wrappedLines =
+            lines.reduce(
+                (count, line) =>
+                    count +
+                    Math.max(
+                        1,
+                        Math.ceil(
+                            line.length /
+                            charactersPerLine
+                        )
+                    ),
+                0
+            );
+
+        const width =
+            clamp(
+                Math.max(
+                    minimumWidth,
+                    Math.min(
+                        longestLine,
+                        charactersPerLine
+                    ) * 9 + 54
+                ),
+                minimumWidth,
+                280
+            );
+
+        const height =
+            Math.max(
+                minimumHeight,
+                98 +
+                    wrappedLines * 20
+            );
+
+        return {
+            width,
+            height
+        };
     }
 
 
@@ -1886,8 +2515,9 @@ class FactoryScene extends Phaser.Scene {
 
 
         /*
-         * LETTER DIFFERENTIAL:
-         * 四个口全部可输入、可输出。
+         * REPLICATOR:
+         * The internal kind remains "splitter" so old JSON files
+         * with _split_0...3 ports continue to load.
          */
         if (
             def.kind === "splitter"
@@ -1931,7 +2561,7 @@ class FactoryScene extends Phaser.Scene {
                             role: "both",
 
                             dataType:
-                                TYPE.LETTER,
+                                null,
 
                             localX: p.x,
                             localY: p.y,
@@ -1941,11 +2571,176 @@ class FactoryScene extends Phaser.Scene {
 
                             bidirectional: true,
 
-                            alwaysLit: true
+                            alwaysLit: false
                         }
                     );
                 }
             );
+
+            return;
+        }
+
+
+        /*
+         * RANDOMIZER:
+         * two WORD inputs, one WORD output.
+         */
+        if (
+            def.kind === "randomizer"
+        ) {
+
+            if (
+                node.orientation ===
+                "horizontal"
+            ) {
+
+                const inputSide =
+                    node.reversed
+                        ? "right"
+                        : "left";
+
+                const outputSide =
+                    node.reversed
+                        ? "left"
+                        : "right";
+
+                const inputX =
+                    inputSide === "left"
+                        ? -node.width / 2
+                        : node.width / 2;
+
+                const outputX =
+                    outputSide === "left"
+                        ? -node.width / 2
+                        : node.width / 2;
+
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_input_0",
+
+                        role: "input",
+                        dataType: TYPE.WORD,
+
+                        localX: inputX,
+                        localY: -node.height * 0.22,
+
+                        direction: inputSide
+                    }
+                );
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_input_1",
+
+                        role: "input",
+                        dataType: TYPE.WORD,
+
+                        localX: inputX,
+                        localY: node.height * 0.22,
+
+                        direction: inputSide
+                    }
+                );
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_output",
+
+                        role: "output",
+                        dataType: TYPE.WORD,
+
+                        localX: outputX,
+                        localY: 0,
+
+                        direction: outputSide
+                    }
+                );
+            }
+            else {
+
+                const inputSide =
+                    node.reversed
+                        ? "bottom"
+                        : "top";
+
+                const outputSide =
+                    node.reversed
+                        ? "top"
+                        : "bottom";
+
+                const inputY =
+                    inputSide === "top"
+                        ? -node.height / 2
+                        : node.height / 2;
+
+                const outputY =
+                    outputSide === "top"
+                        ? -node.height / 2
+                        : node.height / 2;
+
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_input_0",
+
+                        role: "input",
+                        dataType: TYPE.WORD,
+
+                        localX: -node.width * 0.22,
+                        localY: inputY,
+
+                        direction: inputSide
+                    }
+                );
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_input_1",
+
+                        role: "input",
+                        dataType: TYPE.WORD,
+
+                        localX: node.width * 0.22,
+                        localY: inputY,
+
+                        direction: inputSide
+                    }
+                );
+
+                this.createPort(
+                    node,
+                    {
+                        id:
+                            node.id +
+                            "_output",
+
+                        role: "output",
+                        dataType: TYPE.WORD,
+
+                        localX: 0,
+                        localY: outputY,
+
+                        direction: outputSide
+                    }
+                );
+            }
+
 
             return;
         }
@@ -2630,6 +3425,27 @@ class FactoryScene extends Phaser.Scene {
         port
     ) {
 
+        if (
+            node.machineType ===
+            "splitter"
+        ) {
+
+            if (
+                !node.replicatedType
+            ) {
+                return TYPE_COLORS.INVALID;
+            }
+
+
+            return (
+                TYPE_COLORS[
+                    node.replicatedType
+                ] ||
+                TYPE_COLORS.INVALID
+            );
+        }
+
+
         /*
          * 输入口颜色始终保持自身类型颜色。
          */
@@ -2643,10 +3459,9 @@ class FactoryScene extends Phaser.Scene {
 
 
         /*
-         * 差分机四个口一直亮。
+         * Normal always-lit outputs.
          */
         if (
-            port.bidirectional ||
             port.alwaysLit
         ) {
             return TYPE_COLORS[
@@ -2673,6 +3488,102 @@ class FactoryScene extends Phaser.Scene {
 
 
         return TYPE_COLORS.INVALID;
+    }
+
+
+    getEffectivePortType(port) {
+
+        if (!port) {
+            return null;
+        }
+
+
+        const node =
+            this.nodes.get(
+                port.nodeId
+            );
+
+
+        if (!node) {
+            return null;
+        }
+
+
+        if (
+            node.machineType ===
+            "splitter"
+        ) {
+            return (
+                node.replicatedType ||
+                null
+            );
+        }
+
+
+        return (
+            port.dataType ||
+            null
+        );
+    }
+
+
+    getPortCapabilities(port) {
+
+        const node =
+            this.nodes.get(
+                port.nodeId
+            );
+
+
+        if (!node) {
+            return {
+                canInput: false,
+                canOutput: false
+            };
+        }
+
+
+        if (
+            node.machineType ===
+            "splitter"
+        ) {
+
+            if (
+                !node.replicatorInputPortId ||
+                !node.replicatedType
+            ) {
+                return {
+                    canInput: true,
+                    canOutput: false
+                };
+            }
+
+
+            if (
+                port.id ===
+                node.replicatorInputPortId
+            ) {
+                return {
+                    canInput: true,
+                    canOutput: false
+                };
+            }
+
+
+            return {
+                canInput: false,
+                canOutput: true
+            };
+        }
+
+
+        return {
+            canInput:
+                port.role === "input",
+
+            canOutput:
+                port.role === "output"
+        };
     }
 
 
@@ -2889,6 +3800,12 @@ class FactoryScene extends Phaser.Scene {
         }
 
 
+        const connectionType =
+            this.getEffectivePortType(
+                from
+            );
+
+
         this.connections.push({
             id:
                 generateId(
@@ -2902,7 +3819,7 @@ class FactoryScene extends Phaser.Scene {
                 to.id,
 
             dataType:
-                from.dataType
+                connectionType
         });
 
 
@@ -2925,21 +3842,15 @@ class FactoryScene extends Phaser.Scene {
         second
     ) {
 
-        const firstCanOut =
-            first.role === "output" ||
-            first.bidirectional;
+        const firstCapabilities =
+            this.getPortCapabilities(
+                first
+            );
 
-        const firstCanIn =
-            first.role === "input" ||
-            first.bidirectional;
-
-        const secondCanOut =
-            second.role === "output" ||
-            second.bidirectional;
-
-        const secondCanIn =
-            second.role === "input" ||
-            second.bidirectional;
+        const secondCapabilities =
+            this.getPortCapabilities(
+                second
+            );
 
 
         /*
@@ -2950,8 +3861,8 @@ class FactoryScene extends Phaser.Scene {
          */
 
         if (
-            firstCanOut &&
-            secondCanIn
+            firstCapabilities.canOutput &&
+            secondCapabilities.canInput
         ) {
 
             return {
@@ -2962,8 +3873,8 @@ class FactoryScene extends Phaser.Scene {
 
 
         if (
-            secondCanOut &&
-            firstCanIn
+            secondCapabilities.canOutput &&
+            firstCapabilities.canInput
         ) {
 
             return {
@@ -3137,6 +4048,27 @@ class FactoryScene extends Phaser.Scene {
 
     evaluateNetwork() {
 
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                node.machineType ===
+                "splitter"
+            ) {
+                node.replicatedType =
+                    null;
+
+                node.replicatorInputPortId =
+                    null;
+
+                node.validOutput =
+                    false;
+            }
+        }
+
+
         /*
          * 重复几轮是为了处理：
          *
@@ -3212,9 +4144,502 @@ class FactoryScene extends Phaser.Scene {
         }
 
 
+        this.refreshAllOutputDisplays();
+
+        this.refreshSpellingCompulsionState();
+
+        this.refreshAncientPoetryState();
+
+        this.refreshAcrosticState();
+
         this.drawConnections();
 
         refreshLeverState();
+    }
+
+
+    refreshAllOutputDisplays() {
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+            this.updateNodeActualOutput(
+                node
+            );
+        }
+
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                !isStageSynthesizer(
+                    node
+                )
+            ) {
+                continue;
+            }
+
+
+            node.displayOutput =
+                this.getNodeDisplayOutput(
+                    node
+                );
+
+
+            if (
+                node.outputText
+            ) {
+                node.outputText.setText(
+                    node.displayOutput
+                );
+            }
+
+
+            this.rebuildNode(
+                node
+            );
+        }
+
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                node.machineType ===
+                "randomizer"
+            ) {
+                this.refreshRandomizerDisplay(
+                    node
+                );
+            }
+        }
+
+
+        this.drawConnections();
+    }
+
+
+    updateNodeActualOutput(node) {
+
+        if (
+            !isStageSynthesizer(
+                node
+            )
+        ) {
+            return;
+        }
+
+
+        if (
+            !node.validOutput
+        ) {
+            node.actualOutput =
+                "";
+
+            return;
+        }
+
+
+        try {
+            node.actualOutput =
+                this.evaluateTextNode(
+                    node
+                ) || "";
+        }
+        catch (error) {
+
+            console.warn(
+                "Unable to evaluate node output:",
+                node.id,
+                error
+            );
+
+            node.actualOutput =
+                "";
+        }
+    }
+
+
+    getNodeDisplayOutput(node) {
+
+        if (
+            !isStageSynthesizer(
+                node
+            ) ||
+            !node.validOutput
+        ) {
+            return "";
+        }
+
+
+        switch (
+            limiterMode
+        ) {
+
+            case LIMITER_MODE.BLIND:
+                return this.generateBlindText(
+                    node.actualOutput
+                );
+
+            case LIMITER_MODE.BLIND_PLUS:
+                return "";
+
+            case LIMITER_MODE.NONE:
+            default:
+                return (
+                    node.actualOutput ||
+                    ""
+                );
+        }
+    }
+
+
+    generateBlindText(original) {
+
+        if (
+            typeof original !== "string" ||
+            original.length === 0
+        ) {
+            return "";
+        }
+
+
+        const alphabet =
+            "abcdefghijklmnopqrstuvwxyz";
+
+        let result = "";
+
+
+        for (
+            const char of
+            original
+        ) {
+
+            if (
+                char === " " ||
+                char === "\n" ||
+                char === "\t"
+            ) {
+                result += char;
+                continue;
+            }
+
+
+            result +=
+                alphabet[
+                    Math.floor(
+                        Math.random() *
+                        alphabet.length
+                    )
+                ];
+        }
+
+
+        return result;
+    }
+
+
+    calculateRandomizerValidity(node) {
+
+        const validInputIndices =
+            new Set();
+
+        const incoming =
+            this.getIncomingConnectionsForNode(
+                node
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                continue;
+            }
+
+
+            const match =
+                connection
+                    .toPortId
+                    .match(
+                        /_input_(0|1)$/
+                    );
+
+            if (!match) {
+                continue;
+            }
+
+
+            validInputIndices.add(
+                Number(
+                    match[1]
+                )
+            );
+        }
+
+
+        return (
+            validInputIndices.has(0) &&
+            validInputIndices.has(1)
+        );
+    }
+
+
+    getRandomizerInputValues(
+        node,
+        visited = new Set()
+    ) {
+
+        const result = [
+            "",
+            ""
+        ];
+
+        const incoming =
+            this.getIncomingConnectionsForNode(
+                node
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                continue;
+            }
+
+
+            const match =
+                connection
+                    .toPortId
+                    .match(
+                        /_input_(0|1)$/
+                    );
+
+            if (!match) {
+                continue;
+            }
+
+
+            const index =
+                Number(
+                    match[1]
+                );
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+            if (!fromPort) {
+                continue;
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+            if (!sourceNode) {
+                continue;
+            }
+
+
+            result[index] =
+                this.evaluateTextNode(
+                    sourceNode,
+                    visited
+                );
+        }
+
+
+        return result;
+    }
+
+
+    refreshRandomizerDisplay(node) {
+
+        if (
+            node.machineType !==
+                "randomizer" ||
+            !node.randomizerText
+        ) {
+            return;
+        }
+
+
+        const values =
+            this.getRandomizerInputValues(
+                node
+            );
+
+        const wordA =
+            values[0] || "";
+
+        const wordB =
+            values[1] || "";
+
+
+        node.randomizerDisplayA =
+            wordA;
+
+        node.randomizerDisplayB =
+            wordB;
+
+
+        if (
+            limiterMode ===
+            LIMITER_MODE.BLIND_PLUS
+        ) {
+
+            node.randomizerText.setText(
+                ""
+            );
+
+            return;
+        }
+
+
+        if (
+            limiterMode ===
+            LIMITER_MODE.BLIND
+        ) {
+
+            const blindA =
+                wordA
+                    ? this.generateBlindText(
+                        wordA
+                    )
+                    : "-";
+
+            const blindB =
+                wordB
+                    ? this.generateBlindText(
+                        wordB
+                    )
+                    : "-";
+
+
+            node.randomizerText.setText(
+                `${blindA} ↔ ${blindB}`
+            );
+
+            return;
+        }
+
+
+        node.randomizerText.setText(
+            `${wordA || "-"} ↔ ${wordB || "-"}`
+        );
+    }
+
+
+    getSpellingTextForNode(node) {
+
+        if (
+            node.machineType ===
+            "randomizer"
+        ) {
+
+            return this
+                .getRandomizerInputValues(
+                    node,
+                    new Set()
+                )
+                .filter(
+                    value =>
+                        value !== ""
+                )
+                .join(" ");
+        }
+
+
+        return this.evaluateTextNode(
+            node,
+            new Set()
+        );
+    }
+
+
+    evaluateWordSpelling(node) {
+
+        if (
+            !isSpellingConstrainedNode(
+                node
+            )
+        ) {
+            return true;
+        }
+
+
+        const words =
+            extractSpellingWords(
+                this.getSpellingTextForNode(
+                    node
+                )
+            );
+
+
+        if (
+            words.length === 0
+        ) {
+            return false;
+        }
+
+
+        return words.every(
+            word =>
+                isWordSpelledCorrectly(
+                    word
+                )
+        );
+    }
+
+
+    nodePassesActiveConstraints(
+        node,
+        structurallyValid
+    ) {
+
+        if (
+            !structurallyValid
+        ) {
+            return false;
+        }
+
+
+        if (
+            spellingCompulsionEnabled &&
+            isSpellingConstrainedNode(
+                node
+            )
+        ) {
+            return this.evaluateWordSpelling(
+                node
+            );
+        }
+
+
+        return true;
     }
 
 
@@ -3234,7 +4659,22 @@ class FactoryScene extends Phaser.Scene {
         if (
             def.kind === "splitter"
         ) {
-            return true;
+            return this
+                .calculateReplicatorValidity(
+                    node
+                );
+        }
+
+
+        if (
+            def.kind === "randomizer"
+        ) {
+            return this.nodePassesActiveConstraints(
+                node,
+                this.calculateRandomizerValidity(
+                    node
+                )
+            );
         }
 
 
@@ -3296,20 +4736,18 @@ class FactoryScene extends Phaser.Scene {
             /*
              * 类型不一致。
              */
-            if (
-                fromPort.dataType !==
-                def.inputType
-            ) {
-                continue;
-            }
+            const fromType =
+                this.getEffectivePortType(
+                    fromPort
+                );
 
 
             /*
              * 目标输入口自身类型也必须一致。
              */
             if (
-                toPort.dataType !==
-                def.inputType
+                fromType !== def.inputType ||
+                toPort.dataType !== def.inputType
             ) {
                 continue;
             }
@@ -3317,16 +4755,107 @@ class FactoryScene extends Phaser.Scene {
 
             /*
              * 源节点输出本身必须有效。
-             *
-             * source / splitter 恒为 true。
              */
             if (
                 sourceNode.validOutput
+                &&
+                this.connectionIsValid(
+                    connection
+                )
             ) {
-                return true;
+                return this
+                    .nodePassesActiveConstraints(
+                        node,
+                        true
+                    );
             }
         }
 
+
+        return false;
+    }
+
+
+    calculateReplicatorValidity(node) {
+
+        const portIds =
+            new Set(
+                node.ports.map(
+                    port => port.id
+                )
+            );
+
+
+        const incoming =
+            this.connections.filter(
+                connection =>
+                    portIds.has(
+                        connection.toPortId
+                    )
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+
+            if (!fromPort) {
+                continue;
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+
+            if (
+                !sourceNode ||
+                !sourceNode.validOutput
+            ) {
+                continue;
+            }
+
+
+            const sourceType =
+                this.getEffectivePortType(
+                    fromPort
+                );
+
+
+            if (
+                sourceType !== TYPE.LETTER &&
+                sourceType !== TYPE.WORD &&
+                sourceType !== TYPE.SENTENCE &&
+                sourceType !== TYPE.STANZA
+            ) {
+                continue;
+            }
+
+
+            node.replicatorInputPortId =
+                connection.toPortId;
+
+            node.replicatedType =
+                sourceType;
+
+            return true;
+        }
+
+
+        node.replicatorInputPortId =
+            null;
+
+        node.replicatedType =
+            null;
 
         return false;
     }
@@ -3372,29 +4901,50 @@ class FactoryScene extends Phaser.Scene {
         }
 
 
-        /*
-         * 差分机可接受 letter。
-         */
         if (
-            to.bidirectional
-        ) {
-            return (
-                from.dataType ===
-                TYPE.LETTER
-            );
-        }
-
-
-        if (
-            from.dataType !==
-            to.dataType
+            !fromNode.validOutput
         ) {
             return false;
         }
 
 
+        const fromType =
+            this.getEffectivePortType(
+                from
+            );
+
+
+        if (!fromType) {
+            return false;
+        }
+
+
         if (
-            !fromNode.validOutput
+            toNode.machineType ===
+            "splitter"
+        ) {
+
+            if (
+                toNode.replicatorInputPortId &&
+                to.id !==
+                    toNode.replicatorInputPortId
+            ) {
+                return false;
+            }
+
+
+            return (
+                fromType === TYPE.LETTER ||
+                fromType === TYPE.WORD ||
+                fromType === TYPE.SENTENCE ||
+                fromType === TYPE.STANZA
+            );
+        }
+
+
+        if (
+            fromType !==
+            to.dataType
         ) {
             return false;
         }
@@ -3466,10 +5016,17 @@ class FactoryScene extends Phaser.Scene {
                 );
 
 
+            const effectiveType =
+                this.getEffectivePortType(
+                    from
+                );
+
+
             const lineColor =
                 TYPE_COLORS[
-                    from.dataType
-                ];
+                    effectiveType
+                ] ||
+                TYPE_COLORS.INVALID;
 
 
             g.lineStyle(
@@ -3501,11 +5058,17 @@ class FactoryScene extends Phaser.Scene {
                     this.pendingPort
                 );
 
+            const pendingType =
+                this.getEffectivePortType(
+                    this.pendingPort
+                );
+
+
             const color =
                 TYPE_COLORS[
-                    this.pendingPort
-                        .dataType
-                ];
+                    pendingType
+                ] ||
+                TYPE_COLORS.INVALID;
 
 
             g.lineStyle(
@@ -4143,11 +5706,24 @@ class FactoryScene extends Phaser.Scene {
                 );
 
 
+            if (!fromNode) {
+                continue;
+            }
+
+
+            const effectiveType =
+                this.getEffectivePortType(
+                    fromPort
+                );
+
+
             if (
-                fromPort.dataType ===
+                effectiveType ===
                     TYPE.STANZA &&
-                fromNode &&
-                fromNode.validOutput
+                fromNode.validOutput &&
+                this.connectionIsValid(
+                    connection
+                )
             ) {
                 return true;
             }
@@ -4163,6 +5739,8 @@ class FactoryScene extends Phaser.Scene {
        ======================================================== */
 
     generatePoemData() {
+
+        this.evaluationRunId += 1;
 
         const poemMachines =
             this.getReadyPoemMachines();
@@ -4181,6 +5759,48 @@ class FactoryScene extends Phaser.Scene {
          */
         const root =
             poemMachines[0];
+
+
+        if (
+            ancientPoetryEnabled &&
+            !this.productionChainPassesAncientPoetry(
+                root,
+                new Set()
+            )
+        ) {
+
+            this.refreshAncientPoetryState();
+
+            return null;
+        }
+
+        if (
+            spellingCompulsionEnabled &&
+            !this.productionChainPassesSpellingCompulsion(
+                root,
+                new Set()
+            )
+        ) {
+
+            this.refreshSpellingCompulsionState();
+
+            return null;
+        }
+
+        if (
+            (
+                acrosticEnabled ||
+                acrosticPlusEnabled
+            ) &&
+            !this.productionChainPassesAcrostic(
+                root
+            )
+        ) {
+
+            this.refreshAcrosticState();
+
+            return null;
+        }
 
 
         const visited =
@@ -4348,10 +5968,11 @@ class FactoryScene extends Phaser.Scene {
 
 
         /* ========================================================
-           LETTER DIFFERENTIAL
+           REPLICATOR
 
            Does not modify the content.
-           It only duplicates routing capacity.
+           It reproduces the exact content entering its active
+           input port.
            ======================================================== */
 
         if (
@@ -4359,14 +5980,57 @@ class FactoryScene extends Phaser.Scene {
             "splitter"
         ) {
 
-            const inputs =
-                this.getOrderedInputValues(
-                    node,
-                    nextVisited
+            if (
+                !node.replicatorInputPortId
+            ) {
+                return "";
+            }
+
+
+            const connection =
+                this.connections.find(
+                    item =>
+                        item.toPortId ===
+                        node.replicatorInputPortId
                 );
 
-            return (
-                inputs[0] || ""
+            if (!connection) {
+                return "";
+            }
+
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                return "";
+            }
+
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+            if (!fromPort) {
+                return "";
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+            if (!sourceNode) {
+                return "";
+            }
+
+
+            return this.evaluateTextNode(
+                sourceNode,
+                nextVisited
             );
         }
 
@@ -4438,6 +6102,68 @@ class FactoryScene extends Phaser.Scene {
                     nextVisited
                 )
                 .join("");
+        }
+
+
+        /* ========================================================
+           RANDOMIZER
+
+           Chooses one of two WORD inputs. The choice is stable
+           within one poem-generation run.
+           ======================================================== */
+
+        if (
+            node.machineType ===
+            "randomizer"
+        ) {
+
+            if (
+                !node.validOutput
+            ) {
+                return "";
+            }
+
+
+            const values =
+                this.getRandomizerInputValues(
+                    node,
+                    nextVisited
+                );
+
+            const available =
+                values.filter(
+                    value =>
+                        value !== ""
+                );
+
+
+            if (
+                available.length < 2
+            ) {
+                return "";
+            }
+
+
+            if (
+                node.randomizerChoiceRunId !==
+                this.evaluationRunId
+            ) {
+
+                node.randomizerChoice =
+                    Math.random() < 0.5
+                        ? 0
+                        : 1;
+
+                node.randomizerChoiceRunId =
+                    this.evaluationRunId;
+            }
+
+
+            return (
+                values[
+                    node.randomizerChoice
+                ] || ""
+            );
         }
 
 
@@ -4703,6 +6429,932 @@ class FactoryScene extends Phaser.Scene {
     }
 
 
+    getLastWordFromSentence(sentence) {
+
+        if (
+            typeof sentence !==
+            "string"
+        ) {
+            return "";
+        }
+
+
+        const words =
+            sentence
+                .toLowerCase()
+                .match(
+                    /[a-z]+(?:'[a-z]+)?/g
+                );
+
+
+        if (
+            !words ||
+            words.length === 0
+        ) {
+            return "";
+        }
+
+
+        return (
+            words[
+                words.length - 1
+            ] || ""
+        );
+    }
+
+
+    getRhymingPartsForWord(word) {
+
+        if (
+            !word ||
+            !window.pronouncing
+        ) {
+            return [];
+        }
+
+
+        const pronunciations =
+            window
+                .pronouncing
+                .phonesForWord(
+                    word.toLowerCase()
+                );
+
+
+        if (
+            !Array.isArray(
+                pronunciations
+            )
+        ) {
+            return [];
+        }
+
+
+        const parts =
+            pronunciations
+                .map(
+                    phones =>
+                        window
+                            .pronouncing
+                            .rhymingPart(
+                                phones
+                            )
+                )
+                .filter(Boolean);
+
+
+        return [
+            ...new Set(parts)
+        ];
+    }
+
+
+    wordsRhyme(
+        wordA,
+        wordB
+    ) {
+
+        const partsA =
+            this.getRhymingPartsForWord(
+                wordA
+            );
+
+        const partsB =
+            this.getRhymingPartsForWord(
+                wordB
+            );
+
+
+        if (
+            partsA.length === 0 ||
+            partsB.length === 0
+        ) {
+            return false;
+        }
+
+
+        return partsA.some(
+            part =>
+                partsB.includes(
+                    part
+                )
+        );
+    }
+
+
+    evaluateStanzaRhyme(node) {
+
+        if (
+            node.machineType !==
+            "stanza"
+        ) {
+            return true;
+        }
+
+
+        const sentences =
+            this.getOrderedInputValues(
+                node,
+                new Set()
+            )
+                .filter(
+                    value =>
+                        typeof value ===
+                            "string" &&
+                        value.trim() !== ""
+                );
+
+
+        if (
+            sentences.length <= 1
+        ) {
+            return true;
+        }
+
+
+        const endingWords =
+            sentences.map(
+                sentence =>
+                    this.getLastWordFromSentence(
+                        sentence
+                    )
+            );
+
+
+        if (
+            endingWords.some(
+                word =>
+                    !word
+            )
+        ) {
+            return false;
+        }
+
+
+        const reference =
+            endingWords[0];
+
+
+        for (
+            let i = 1;
+            i < endingWords.length;
+            i++
+        ) {
+
+            if (
+                !this.wordsRhyme(
+                    reference,
+                    endingWords[i]
+                )
+            ) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
+
+    getFirstLetterFromSentence(sentence) {
+
+        const match =
+            String(
+                sentence || ""
+            )
+                .toLowerCase()
+                .match(/[a-z]/);
+
+        return match
+            ? match[0]
+            : "";
+    }
+
+
+    getFirstWordFromSentence(sentence) {
+
+        const match =
+            String(
+                sentence || ""
+            )
+                .toLowerCase()
+                .match(/[a-z]+(?:'[a-z]+)?/);
+
+        return match
+            ? match[0]
+            : "";
+    }
+
+
+    collectProductionChainNodes(
+        node,
+        collected = new Map(),
+        visited = new Set()
+    ) {
+
+        if (!node) {
+            return collected;
+        }
+
+
+        if (
+            visited.has(
+                node.id
+            )
+        ) {
+            return collected;
+        }
+
+
+        visited.add(
+            node.id
+        );
+
+        collected.set(
+            node.id,
+            node
+        );
+
+
+        const incoming =
+            this.getIncomingConnectionsForNode(
+                node
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                continue;
+            }
+
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+
+            if (!fromPort) {
+                continue;
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+
+            this.collectProductionChainNodes(
+                sourceNode,
+                collected,
+                visited
+            );
+        }
+
+
+        return collected;
+    }
+
+
+    getAcrosticSentenceNodesForPoem(
+        poemNode
+    ) {
+
+        return Array.from(
+            this.collectProductionChainNodes(
+                poemNode
+            )
+                .values()
+        )
+            .filter(
+                node =>
+                    node.machineType ===
+                    "sentence"
+            );
+    }
+
+
+    evaluateAcrosticSentenceNodes(
+        sentenceNodes
+    ) {
+
+        if (
+            !acrosticEnabled &&
+            !acrosticPlusEnabled
+        ) {
+            return true;
+        }
+
+
+        if (
+            sentenceNodes.length <=
+            1
+        ) {
+            return true;
+        }
+
+
+        const keys = [];
+
+
+        for (
+            const node of
+            sentenceNodes
+        ) {
+
+            if (
+                !node.validOutput
+            ) {
+                return false;
+            }
+
+
+            const sentence =
+                this.evaluateTextNode(
+                    node,
+                    new Set()
+                );
+
+            const key =
+                acrosticPlusEnabled
+                    ? this.getFirstWordFromSentence(
+                        sentence
+                    )
+                    : this.getFirstLetterFromSentence(
+                        sentence
+                    );
+
+
+            if (!key) {
+                return false;
+            }
+
+
+            keys.push(
+                key
+            );
+        }
+
+
+        const reference =
+            keys[0];
+
+        return keys.every(
+            key =>
+                key === reference
+        );
+    }
+
+
+    refreshAcrosticState() {
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                node.machineType !==
+                    "sentence" ||
+                !node.acrosticIndicator
+            ) {
+                continue;
+            }
+
+
+            node.acrosticValid =
+                true;
+
+            node.acrosticIndicator
+                .setFillStyle(
+                    0x555555,
+                    1
+                );
+        }
+
+
+        if (
+            !acrosticEnabled &&
+            !acrosticPlusEnabled
+        ) {
+            return;
+        }
+
+
+        const states =
+            new Map();
+
+        const readyPoems =
+            this.getReadyPoemMachines();
+
+
+        for (
+            const poemNode of
+            readyPoems
+        ) {
+
+            const sentenceNodes =
+                this.getAcrosticSentenceNodesForPoem(
+                    poemNode
+                );
+
+            if (
+                sentenceNodes.length ===
+                0
+            ) {
+                continue;
+            }
+
+
+            const valid =
+                this.evaluateAcrosticSentenceNodes(
+                    sentenceNodes
+                );
+
+
+            for (
+                const sentenceNode of
+                sentenceNodes
+            ) {
+
+                states.set(
+                    sentenceNode.id,
+                    Boolean(
+                        states.get(
+                            sentenceNode.id
+                        )
+                    ) || valid
+                );
+            }
+        }
+
+
+        for (
+            const [
+                nodeId,
+                valid
+            ] of states
+        ) {
+
+            const node =
+                this.nodes.get(
+                    nodeId
+                );
+
+
+            if (
+                !node ||
+                !node.acrosticIndicator
+            ) {
+                continue;
+            }
+
+
+            node.acrosticValid =
+                valid;
+
+            node.acrosticIndicator
+                .setFillStyle(
+                    valid
+                        ? 0x43b86b
+                        : 0xb83f3f,
+                    1
+                );
+        }
+    }
+
+
+    productionChainPassesAcrostic(
+        poemNode
+    ) {
+
+        if (
+            !acrosticEnabled &&
+            !acrosticPlusEnabled
+        ) {
+            return true;
+        }
+
+
+        const sentenceNodes =
+            this.getAcrosticSentenceNodesForPoem(
+                poemNode
+            );
+
+        return this.evaluateAcrosticSentenceNodes(
+            sentenceNodes
+        );
+    }
+
+
+    passesAcrosticRule() {
+
+        if (
+            !acrosticEnabled &&
+            !acrosticPlusEnabled
+        ) {
+            return true;
+        }
+
+
+        const readyPoems =
+            this.getReadyPoemMachines();
+
+
+        if (
+            readyPoems.length ===
+            0
+        ) {
+            return false;
+        }
+
+
+        return readyPoems.some(
+            poemNode =>
+                this.productionChainPassesAcrostic(
+                    poemNode
+                )
+        );
+    }
+
+
+    refreshSpellingCompulsionState() {
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                !isSpellingConstrainedNode(
+                    node
+                ) ||
+                !node.spellingIndicator
+            ) {
+                continue;
+            }
+
+
+            if (
+                !spellingCompulsionEnabled
+            ) {
+
+                node.spellingValid =
+                    true;
+
+                node.spellingIndicator
+                    .setFillStyle(
+                        0x555555,
+                        1
+                    );
+
+                continue;
+            }
+
+
+            const valid =
+                node.validOutput &&
+                this.evaluateWordSpelling(
+                    node
+                );
+
+            node.spellingValid =
+                valid;
+
+            node.spellingIndicator
+                .setFillStyle(
+                    valid
+                        ? 0x43b86b
+                        : 0xb83f3f,
+                    1
+                );
+        }
+    }
+
+
+    productionChainPassesSpellingCompulsion(
+        node,
+        visited = new Set()
+    ) {
+
+        if (!node) {
+            return false;
+        }
+
+
+        if (
+            visited.has(
+                node.id
+            )
+        ) {
+            return true;
+        }
+
+
+        visited.add(
+            node.id
+        );
+
+
+        if (
+            isSpellingConstrainedNode(
+                node
+            ) &&
+            !this.evaluateWordSpelling(
+                node
+            )
+        ) {
+            return false;
+        }
+
+
+        const incoming =
+            this.getIncomingConnectionsForNode(
+                node
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                continue;
+            }
+
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+
+            if (!fromPort) {
+                continue;
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+
+            if (!sourceNode) {
+                continue;
+            }
+
+
+            if (
+                !this.productionChainPassesSpellingCompulsion(
+                    sourceNode,
+                    visited
+                )
+            ) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
+
+    passesSpellingCompulsionRule() {
+
+        if (
+            !spellingCompulsionEnabled
+        ) {
+            return true;
+        }
+
+
+        const readyPoems =
+            this.getReadyPoemMachines();
+
+
+        if (
+            readyPoems.length === 0
+        ) {
+            return false;
+        }
+
+
+        return readyPoems.some(
+            poemNode =>
+                this.productionChainPassesSpellingCompulsion(
+                    poemNode,
+                    new Set()
+                )
+        );
+    }
+
+
+    refreshAncientPoetryState() {
+
+        for (
+            const node of
+            this.nodes.values()
+        ) {
+
+            if (
+                node.machineType !==
+                "stanza" ||
+                !node.rhymeIndicator
+            ) {
+                continue;
+            }
+
+
+            if (
+                !ancientPoetryEnabled
+            ) {
+
+                node.rhymeValid =
+                    true;
+
+                node.rhymeIndicator
+                    .setFillStyle(
+                        0x555555,
+                        1
+                    );
+
+                continue;
+            }
+
+
+            if (
+                !node.validOutput
+            ) {
+
+                node.rhymeValid =
+                    false;
+
+                node.rhymeIndicator
+                    .setFillStyle(
+                        0xb83f3f,
+                        1
+                    );
+
+                continue;
+            }
+
+
+            const valid =
+                this.evaluateStanzaRhyme(
+                    node
+                );
+
+            node.rhymeValid =
+                valid;
+
+            node.rhymeIndicator
+                .setFillStyle(
+                    valid
+                        ? 0x43b86b
+                        : 0xb83f3f,
+                    1
+                );
+        }
+    }
+
+
+    productionChainPassesAncientPoetry(
+        node,
+        visited = new Set()
+    ) {
+
+        if (!node) {
+            return false;
+        }
+
+
+        if (
+            visited.has(
+                node.id
+            )
+        ) {
+            return true;
+        }
+
+
+        visited.add(
+            node.id
+        );
+
+
+        if (
+            node.machineType ===
+                "stanza" &&
+            !this.evaluateStanzaRhyme(
+                node
+            )
+        ) {
+            return false;
+        }
+
+
+        const incoming =
+            this.getIncomingConnectionsForNode(
+                node
+            );
+
+
+        for (
+            const connection of
+            incoming
+        ) {
+
+            if (
+                !this.connectionIsValid(
+                    connection
+                )
+            ) {
+                continue;
+            }
+
+
+            const fromPort =
+                this.findPortById(
+                    connection.fromPortId
+                );
+
+
+            if (!fromPort) {
+                continue;
+            }
+
+
+            const sourceNode =
+                this.nodes.get(
+                    fromPort.nodeId
+                );
+
+
+            if (!sourceNode) {
+                continue;
+            }
+
+
+            if (
+                !this.productionChainPassesAncientPoetry(
+                    sourceNode,
+                    visited
+                )
+            ) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
+
+    passesAncientPoetryRule() {
+
+        if (
+            !ancientPoetryEnabled
+        ) {
+            return true;
+        }
+
+
+        const readyPoems =
+            this.getReadyPoemMachines();
+
+
+        if (
+            readyPoems.length === 0
+        ) {
+            return false;
+        }
+
+
+        return readyPoems.some(
+            poemNode =>
+                this.productionChainPassesAncientPoetry(
+                    poemNode,
+                    new Set()
+                )
+        );
+    }
+
+
     /* ========================================================
        SERIALIZATION
        ======================================================== */
@@ -4762,6 +7414,28 @@ class FactoryScene extends Phaser.Scene {
 
                 reversed:
                     this.globalReversed
+            },
+
+            limiters: {
+                blind:
+                    limiterMode ===
+                    LIMITER_MODE.BLIND,
+
+                blindPlus:
+                    limiterMode ===
+                    LIMITER_MODE.BLIND_PLUS,
+
+                ancientPoetry:
+                    ancientPoetryEnabled,
+
+                spellingCompulsion:
+                    spellingCompulsionEnabled,
+
+                acrostic:
+                    acrosticEnabled,
+
+                acrosticPlus:
+                    acrosticPlusEnabled
             },
 
             camera: {
@@ -4836,6 +7510,83 @@ class FactoryScene extends Phaser.Scene {
                     data.layout.reversed
                 );
         }
+
+
+        if (
+            data.limiters
+        ) {
+
+            if (
+                data.limiters.blind
+            ) {
+                limiterMode =
+                    LIMITER_MODE.BLIND;
+            }
+            else if (
+                data.limiters.blindPlus
+            ) {
+                limiterMode =
+                    LIMITER_MODE.BLIND_PLUS;
+            }
+            else {
+                limiterMode =
+                    LIMITER_MODE.NONE;
+            }
+
+
+            ancientPoetryEnabled =
+                Boolean(
+                    data.limiters
+                        .ancientPoetry
+                );
+
+            spellingCompulsionEnabled =
+                Boolean(
+                    data.limiters
+                        .spellingCompulsion
+                );
+
+            acrosticEnabled =
+                Boolean(
+                    data.limiters
+                        .acrostic
+                );
+
+            acrosticPlusEnabled =
+                Boolean(
+                    data.limiters
+                        .acrosticPlus
+                );
+
+            if (
+                acrosticEnabled &&
+                acrosticPlusEnabled
+            ) {
+                acrosticPlusEnabled =
+                    false;
+            }
+        }
+        else {
+            limiterMode =
+                LIMITER_MODE.NONE;
+
+            ancientPoetryEnabled =
+                false;
+
+            spellingCompulsionEnabled =
+                false;
+
+            acrosticEnabled =
+                false;
+
+            acrosticPlusEnabled =
+                false;
+        }
+
+
+        syncLimiterControls();
+
+        updateBlindAnimationState();
 
 
         /*
@@ -4935,7 +7686,7 @@ class FactoryScene extends Phaser.Scene {
                     dataType:
                         connection
                             .dataType ||
-                        from.dataType
+                        null
                 });
             }
         }
@@ -5466,6 +8217,325 @@ DOM.symbolInput.addEventListener(
 );
 
 
+function syncLimiterControls() {
+
+    if (
+        DOM.limiterBlind
+    ) {
+        DOM.limiterBlind.checked =
+            limiterMode ===
+            LIMITER_MODE.BLIND;
+    }
+
+
+    if (
+        DOM.limiterBlindPlus
+    ) {
+        DOM.limiterBlindPlus.checked =
+            limiterMode ===
+            LIMITER_MODE.BLIND_PLUS;
+    }
+
+
+    if (
+        DOM.limiterAncientPoetry
+    ) {
+        DOM.limiterAncientPoetry.checked =
+            ancientPoetryEnabled;
+    }
+
+
+    if (
+        DOM.limiterSpellingCompulsion
+    ) {
+        DOM.limiterSpellingCompulsion.checked =
+            spellingCompulsionEnabled;
+    }
+
+
+    if (
+        DOM.limiterAcrostic
+    ) {
+        DOM.limiterAcrostic.checked =
+            acrosticEnabled;
+    }
+
+
+    if (
+        DOM.limiterAcrosticPlus
+    ) {
+        DOM.limiterAcrosticPlus.checked =
+            acrosticPlusEnabled;
+    }
+}
+
+
+function updateBlindAnimationState() {
+
+    if (
+        blindAnimationTimer
+    ) {
+        clearInterval(
+            blindAnimationTimer
+        );
+
+        blindAnimationTimer =
+            null;
+    }
+
+
+    if (
+        limiterMode !==
+        LIMITER_MODE.BLIND
+    ) {
+        return;
+    }
+
+
+    blindAnimationTimer =
+        setInterval(
+            () => {
+
+                if (
+                    !factoryScene ||
+                    limiterMode !==
+                    LIMITER_MODE.BLIND
+                ) {
+                    return;
+                }
+
+
+                for (
+                    const node of
+                    factoryScene.nodes.values()
+                ) {
+
+                    if (
+                        !isLimiterAffectedNode(
+                            node
+                        )
+                    ) {
+                        continue;
+                    }
+
+
+                    if (
+                        node.machineType ===
+                        "randomizer"
+                    ) {
+
+                        factoryScene
+                            .refreshRandomizerDisplay(
+                                node
+                            );
+
+                        continue;
+                    }
+
+
+                    if (
+                        !node.validOutput ||
+                        !node.outputText
+                    ) {
+                        continue;
+                    }
+
+
+                    const blindText =
+                        factoryScene
+                            .generateBlindText(
+                                node.actualOutput
+                            );
+
+
+                    node.outputText.setText(
+                        blindText
+                    );
+                }
+            },
+            90
+        );
+}
+
+
+DOM.limiterBlind.addEventListener(
+    "change",
+    () => {
+
+        if (
+            DOM.limiterBlind.checked
+        ) {
+            DOM.limiterBlindPlus.checked =
+                false;
+
+            limiterMode =
+                LIMITER_MODE.BLIND;
+        }
+        else {
+            limiterMode =
+                DOM.limiterBlindPlus.checked
+                    ? LIMITER_MODE.BLIND_PLUS
+                    : LIMITER_MODE.NONE;
+        }
+
+
+        factoryScene
+            ?.refreshAllOutputDisplays();
+
+        updateBlindAnimationState();
+    }
+);
+
+
+DOM.limiterBlindPlus.addEventListener(
+    "change",
+    () => {
+
+        if (
+            DOM.limiterBlindPlus.checked
+        ) {
+            DOM.limiterBlind.checked =
+                false;
+
+            limiterMode =
+                LIMITER_MODE.BLIND_PLUS;
+        }
+        else {
+            limiterMode =
+                DOM.limiterBlind.checked
+                    ? LIMITER_MODE.BLIND
+                    : LIMITER_MODE.NONE;
+        }
+
+
+        factoryScene
+            ?.refreshAllOutputDisplays();
+
+        updateBlindAnimationState();
+    }
+);
+
+
+DOM.limiterAncientPoetry.addEventListener(
+    "change",
+    () => {
+
+        ancientPoetryEnabled =
+            DOM
+                .limiterAncientPoetry
+                .checked;
+
+        if (
+            factoryScene
+        ) {
+
+            factoryScene
+                .refreshAncientPoetryState();
+        }
+
+        refreshLeverState();
+    }
+);
+
+
+DOM.limiterSpellingCompulsion.addEventListener(
+    "change",
+    () => {
+
+        spellingCompulsionEnabled =
+            DOM
+                .limiterSpellingCompulsion
+                .checked;
+
+        if (
+            factoryScene
+        ) {
+
+            factoryScene
+                .evaluateNetwork();
+        }
+
+        refreshLeverState();
+    }
+);
+
+
+DOM.limiterAcrostic.addEventListener(
+    "change",
+    () => {
+
+        if (
+            DOM
+                .limiterAcrostic
+                .checked
+        ) {
+
+            DOM.limiterAcrosticPlus.checked =
+                false;
+
+            acrosticEnabled =
+                true;
+
+            acrosticPlusEnabled =
+                false;
+        }
+        else {
+            acrosticEnabled =
+                false;
+        }
+
+
+        if (
+            factoryScene
+        ) {
+
+            factoryScene
+                .refreshAcrosticState();
+        }
+
+        refreshLeverState();
+    }
+);
+
+
+DOM.limiterAcrosticPlus.addEventListener(
+    "change",
+    () => {
+
+        if (
+            DOM
+                .limiterAcrosticPlus
+                .checked
+        ) {
+
+            DOM.limiterAcrostic.checked =
+                false;
+
+            acrosticEnabled =
+                false;
+
+            acrosticPlusEnabled =
+                true;
+        }
+        else {
+            acrosticPlusEnabled =
+                false;
+        }
+
+
+        if (
+            factoryScene
+        ) {
+
+            factoryScene
+                .refreshAcrosticState();
+        }
+
+        refreshLeverState();
+    }
+);
+
+
 /* ============================================================
    AUTO COLLAPSE PANELS
    ============================================================ */
@@ -5981,10 +9051,28 @@ function refreshLeverState() {
     }
 
 
-    const ready =
+    const structurallyReady =
         factoryScene
             .getReadyPoemMachines()
             .length > 0;
+
+    const rhymeReady =
+        factoryScene
+            .passesAncientPoetryRule();
+
+    const spellingReady =
+        factoryScene
+            .passesSpellingCompulsionRule();
+
+    const acrosticReady =
+        factoryScene
+            .passesAcrosticRule();
+
+    const ready =
+        structurallyReady &&
+        rhymeReady &&
+        spellingReady &&
+        acrosticReady;
 
 
     DOM.lever.classList.toggle(
@@ -6007,6 +9095,44 @@ DOM.lever.addEventListener(
     () => {
 
         if (!factoryScene) {
+            return;
+        }
+
+        if (
+            !factoryScene
+                .passesAncientPoetryRule()
+        ) {
+
+            showToast(
+                "Ancient Poetry requires every sentence to rhyme."
+            );
+
+            return;
+        }
+
+        if (
+            !factoryScene
+                .passesSpellingCompulsionRule()
+        ) {
+
+            showToast(
+                "Spelling Compulsion requires dictionary words."
+            );
+
+            return;
+        }
+
+        if (
+            !factoryScene
+                .passesAcrosticRule()
+        ) {
+
+            showToast(
+                acrosticPlusEnabled
+                    ? "Acrostic+ requires every sentence to begin with the same word."
+                    : "Acrostic requires every sentence to begin with the same letter."
+            );
+
             return;
         }
 

@@ -86,18 +86,18 @@
                 </div>
 
 
-                <!-- Letter Differential -->
+                <!-- Replicator -->
 
                 <button
                     class="machine-item machine-button"
                     data-machine="splitter"
                 >
                     <span class="machine-name-main">
-                        Letter Differential
+                        Replicator
                     </span>
 
                     <span class="machine-type">
-                        LETTER ↔ LETTER
+                        ANY -> COPY x3
                     </span>
                 </button>
 
@@ -264,6 +264,172 @@
                         STANZA → POEM
                     </span>
                 </button>
+
+
+                <!-- Randomizer -->
+
+                <button
+                    class="machine-item machine-button"
+                    data-machine="randomizer"
+                >
+                    <span class="machine-name-main">
+                        Randomizer
+                    </span>
+
+                    <span class="machine-type">
+                        WORD x2 -> WORD
+                    </span>
+                </button>
+
+
+                <!-- Limiters -->
+
+                <div class="limiter-section">
+
+                    <div class="limiter-section-title">
+                        LIMITERS
+                    </div>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                BLIND ASSEMBLY RULE
+                            </div>
+
+                            <div class="limiter-description">
+                                Stage synthesizers conceal their output and
+                                display constantly shifting random characters
+                                of the same length.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-blind"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                BLIND ASSEMBLY RULE+
+                            </div>
+
+                            <div class="limiter-description">
+                                Stage synthesizers conceal their output
+                                completely.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-blind-plus"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                ANCIENT POETRY
+                            </div>
+
+                            <div class="limiter-description">
+                                Every sentence must rhyme, or the poem cannot
+                                be exported.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-ancient-poetry"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                SPELLING COMPULSION
+                            </div>
+
+                            <div class="limiter-description">
+                                Word outputs must exist in the dictionary, or
+                                they cannot pass through production.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-spelling-compulsion"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                ACROSTIC
+                            </div>
+
+                            <div class="limiter-description">
+                                All sentences must begin with the same letter,
+                                or the poem cannot be exported.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-acrostic"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                    <label class="limiter-item">
+
+                        <div class="limiter-copy">
+
+                            <div class="limiter-name">
+                                ACROSTIC+
+                            </div>
+
+                            <div class="limiter-description">
+                                All sentences must begin with the same word, or
+                                the poem cannot be exported.
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="limiter-acrostic-plus"
+                            class="limiter-checkbox"
+                            type="checkbox"
+                        >
+
+                    </label>
+
+                </div>
 
             </div>
         </div>
@@ -459,7 +625,11 @@
 
 
 <script src="./phaser/engine/phaser.min.js"></script>
-<script src="./app.js"></script>
+<script src="./dict/pronouncing-browser.js"></script>
+<script
+    type="module"
+    src="./app.js"
+></script>
 
 </body>
 </html>
