@@ -1,0 +1,2336 @@
+{
+  "app": "PoetryFactory",
+  "version": 1,
+  "createdAt": "2026-08-23T22:47:31.566Z",
+  "layout": {
+    "orientation": "vertical",
+    "reversed": false
+  },
+  "camera": {
+    "zoom": 0.4,
+    "scrollX": 4322.637125561137,
+    "scrollY": 174.00522706148763
+  },
+  "nodes": [
+    {
+      "id": "node_mt5ja1h5_934qjv",
+      "machineType": "letterSource",
+      "x": 518.1538094850719,
+      "y": -369.9242377858748,
+      "letter": "a",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5ja363_yxbcrp",
+      "machineType": "letterSource",
+      "x": 7131.85239065224,
+      "y": 850.8456832921245,
+      "letter": "b",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jacf2_uf0fie",
+      "machineType": "letterSource",
+      "x": 1305.9492672031304,
+      "y": -353.26007018390993,
+      "letter": "c",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jad35_ijjpp2",
+      "machineType": "letterSource",
+      "x": 1728.849856331867,
+      "y": -382.8499987545356,
+      "letter": "d",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jag0n_nup6an",
+      "machineType": "letterSource",
+      "x": 2490.3932014057077,
+      "y": -666.9488651084898,
+      "letter": "e",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jaig1_7mjnpk",
+      "machineType": "letterSource",
+      "x": 3085.815544332679,
+      "y": -380.9499550430555,
+      "letter": "f",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jajq3_rcs7kn",
+      "machineType": "letterSource",
+      "x": 3429.295817062491,
+      "y": -385.73492354628,
+      "letter": "g",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jal10_gh5pxt",
+      "machineType": "letterSource",
+      "x": 3798.6205906905043,
+      "y": -382.41698688182305,
+      "letter": "h",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5javz5_ckglnv",
+      "machineType": "letterSource",
+      "x": 4501.129366931324,
+      "y": -426.8106165964289,
+      "letter": "i",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jaxsp_96j8hx",
+      "machineType": "letterSource",
+      "x": 4837.534094119462,
+      "y": -442.00139917449803,
+      "letter": "k",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jb7p4_w8q8fq",
+      "machineType": "letterSource",
+      "x": 5191.51572040078,
+      "y": -389.50993219353325,
+      "letter": "l",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jb8xz_ckxwpw",
+      "machineType": "letterSource",
+      "x": 5477.776624804232,
+      "y": -396.5140914278037,
+      "letter": "m",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jb9qq_kdufj5",
+      "machineType": "letterSource",
+      "x": 5883.353581426732,
+      "y": -377.95060654797095,
+      "letter": "n",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbayd_qmmi3d",
+      "machineType": "letterSource",
+      "x": 6458.161721820601,
+      "y": -318.6350787145047,
+      "letter": "o",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbblp_n6f61a",
+      "machineType": "letterSource",
+      "x": 11466.108171511178,
+      "y": 790.6369533491528,
+      "letter": "p",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbcp5_9fu2lo",
+      "machineType": "letterSource",
+      "x": 7081.154511387467,
+      "y": -312.56615587472515,
+      "letter": "q",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbix0_qgsdgj",
+      "machineType": "letterSource",
+      "x": 7435.773177196605,
+      "y": -276.9458879590886,
+      "letter": "r",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbjie_wdg5pe",
+      "machineType": "letterSource",
+      "x": 7827.09540350499,
+      "y": -280.89150923558225,
+      "letter": "s",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbkn5_78262w",
+      "machineType": "letterSource",
+      "x": 8155.716777295566,
+      "y": -259.8505041910521,
+      "letter": "t",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jbrci_aemf9w",
+      "machineType": "letterSource",
+      "x": 8533.837342546734,
+      "y": -261.48949537059866,
+      "letter": "u",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jc025_lag9kh",
+      "machineType": "letterSource",
+      "x": 8808.149999891899,
+      "y": -296.28708890688824,
+      "letter": "w",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jc20e_w4z89k",
+      "machineType": "letterSource",
+      "x": 4257.661424926497,
+      "y": 611.4062126944484,
+      "letter": "y",
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jc77i_6f0zpr",
+      "machineType": "symbolModifier",
+      "x": 2602.0761676794573,
+      "y": 1654.4921397184698,
+      "letter": null,
+      "symbol": "?",
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jc8g5_rminxg",
+      "machineType": "symbolModifier",
+      "x": 7856.557843118699,
+      "y": 1691.4402129758969,
+      "letter": null,
+      "symbol": "?",
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jc9zw_04gl80",
+      "machineType": "symbolModifier",
+      "x": 7505.7696276652505,
+      "y": 1689.1578723571138,
+      "letter": null,
+      "symbol": ",",
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jcbjf_lc50ho",
+      "machineType": "symbolModifier",
+      "x": 3128.129552814549,
+      "y": 1652.414580242025,
+      "letter": null,
+      "symbol": "?",
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jd0bi_u4alux",
+      "machineType": "splitter",
+      "x": 524.6240813019308,
+      "y": -180.10185084527188,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jdbhr_l0dnm7",
+      "machineType": "splitter",
+      "x": 815.6689404015608,
+      "y": -107.52029376956034,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jdbnb_6e7dxs",
+      "machineType": "splitter",
+      "x": 540.0872060906634,
+      "y": 164.49895894648023,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jdbvy_mxf6c7",
+      "machineType": "splitter",
+      "x": 298.2391585404579,
+      "y": -129.66509047676374,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jdocs_6ejbuz",
+      "machineType": "splitter",
+      "x": 385.2467717270429,
+      "y": 4.112511929683592,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jm49k_bklddk",
+      "machineType": "splitter",
+      "x": 18.819234956422065,
+      "y": -14.117635351821491,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jnjj7_k5j1x4",
+      "machineType": "splitter",
+      "x": 1373.2154814419277,
+      "y": -193.79322092440088,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jnq0c_4siqwj",
+      "machineType": "splitter",
+      "x": 1758.5495995055282,
+      "y": -249.41858303505649,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jnq4b_pake13",
+      "machineType": "splitter",
+      "x": 1842.2331280140286,
+      "y": 41.81324331758901,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jrpey_6pauoh",
+      "machineType": "splitter",
+      "x": 2168.502691021037,
+      "y": -107.16710028583668,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jrpny_xnnrbx",
+      "machineType": "splitter",
+      "x": 2739.895097756422,
+      "y": -326.713468750111,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jrq0b_53xapn",
+      "machineType": "splitter",
+      "x": 2514.37749683141,
+      "y": -243.31632378666404,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jrq9t_og5gip",
+      "machineType": "splitter",
+      "x": 2268.423514051973,
+      "y": -340.4003353053548,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jrqji_jhfn13",
+      "machineType": "splitter",
+      "x": 2505.843423575922,
+      "y": -467.0130081138242,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5js4u7_hrejyi",
+      "machineType": "splitter",
+      "x": 2568.819457197122,
+      "y": -9.941075242566853,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jsdan_910myq",
+      "machineType": "splitter",
+      "x": 2026.5818536178208,
+      "y": -223.87558684561418,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jsdic_jcsya9",
+      "machineType": "splitter",
+      "x": 2364.0115031192,
+      "y": -164.73978698632743,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jt7vh_lv7c46",
+      "machineType": "splitter",
+      "x": 3090.0388973894646,
+      "y": -215.52911478449096,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jtiiu_acna5k",
+      "machineType": "splitter",
+      "x": 3435.278957071563,
+      "y": -200.82909379271337,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jueqs_knbmpb",
+      "machineType": "splitter",
+      "x": 3833.6660895333457,
+      "y": -180.05943604636263,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5juga2_5owczc",
+      "machineType": "splitter",
+      "x": 3676.691124046579,
+      "y": -86.68639489292354,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jun8x_mj3b6f",
+      "machineType": "splitter",
+      "x": 3846.93994188822,
+      "y": -20.038727445408313,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5junco_h2fu2z",
+      "machineType": "splitter",
+      "x": 4036.097308956697,
+      "y": -176.3200588288462,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jvffj_3bloca",
+      "machineType": "splitter",
+      "x": 4508.954899958102,
+      "y": -220.40629484198894,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jvfl3_c8pu2b",
+      "machineType": "splitter",
+      "x": 4593.225782109835,
+      "y": -6.400265798812711,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jvfsl_rsz11s",
+      "machineType": "splitter",
+      "x": 4868.3290598706,
+      "y": -194.17014020095382,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jvjk9_43axoq",
+      "machineType": "splitter",
+      "x": 4330.626336186494,
+      "y": -65.52019186820894,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jw7k1_2unmna",
+      "machineType": "splitter",
+      "x": 4910.6637795295,
+      "y": -18.35807417943738,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jxiki_aol8wf",
+      "machineType": "splitter",
+      "x": 5246.526614056255,
+      "y": -162.42011271665024,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jxioi_s6un9h",
+      "machineType": "splitter",
+      "x": 5517.178334918007,
+      "y": -107.52017749292577,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jyc4x_jtpoyb",
+      "machineType": "splitter",
+      "x": 5874.209017229756,
+      "y": -26.627459390177023,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jyc93_g8pw9e",
+      "machineType": "splitter",
+      "x": 6036.0257471735395,
+      "y": -64.45550127094111,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jycd9_swgu7q",
+      "machineType": "splitter",
+      "x": 5755.305433491825,
+      "y": -85.72640393066104,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jye0z_snf4ro",
+      "machineType": "splitter",
+      "x": 5871.188547519015,
+      "y": -183.914384414364,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jyzqx_koou69",
+      "machineType": "splitter",
+      "x": 6332.741201007924,
+      "y": -107.59299892527656,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jyzuy_8vufv6",
+      "machineType": "splitter",
+      "x": 6606.646030142756,
+      "y": -151.76233915148896,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5jzhes_367j22",
+      "machineType": "splitter",
+      "x": 7085.2504168424075,
+      "y": -92.48952830372332,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k030z_drngv1",
+      "machineType": "splitter",
+      "x": 7288.2836938782975,
+      "y": 12.102182295752812,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k034l_prsnbq",
+      "machineType": "splitter",
+      "x": 7451.842814693525,
+      "y": -69.47905586617117,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k04kj_ahvogm",
+      "machineType": "splitter",
+      "x": 7503.659985305356,
+      "y": 206.2799532518202,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k0h74_hcvlil",
+      "machineType": "splitter",
+      "x": 7701.999441383213,
+      "y": -116.7674054618737,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k0hbf_jfwtif",
+      "machineType": "splitter",
+      "x": 7780.262588053386,
+      "y": 112.25333286955686,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k0on1_4nptcp",
+      "machineType": "splitter",
+      "x": 7970.439775699846,
+      "y": -28.471537985231407,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k0or7_eqcf0p",
+      "machineType": "splitter",
+      "x": 8156.066528649438,
+      "y": 177.9329459115056,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5k0ov8_db7l1q",
+      "machineType": "splitter",
+      "x": 8153.060775911398,
+      "y": -78.38394479522788,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kbw21_imb0wc",
+      "machineType": "splitter",
+      "x": 8522.651002057864,
+      "y": -21.80289154634147,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kc4by_64mr42",
+      "machineType": "splitter",
+      "x": 8815.718020159362,
+      "y": -25.907040511262153,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kcnzq_ksoozy",
+      "machineType": "word",
+      "x": 452.2672621954279,
+      "y": 632.590034473145,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kdlf7_148dnm",
+      "machineType": "word",
+      "x": 806.0947233307115,
+      "y": 613.5654542268234,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kebby_vl1v4z",
+      "machineType": "primary",
+      "x": 1073.5673332918166,
+      "y": 358.4012557226131,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kedu9_pdezhg",
+      "machineType": "word",
+      "x": 1116.3814196784544,
+      "y": 606.2760999125745,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kexv3_d30sps",
+      "machineType": "word",
+      "x": 1737.8650577306655,
+      "y": 588.411886247833,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kexz9_wx6kdn",
+      "machineType": "word",
+      "x": 1427.67003769042,
+      "y": 592.2852052728912,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kf5nx_nzffyd",
+      "machineType": "word",
+      "x": 2266.154431814691,
+      "y": 604.3918799583182,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kf5rt_8ipsis",
+      "machineType": "word",
+      "x": 1994.7390235111188,
+      "y": 586.1431674993272,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kfbj6_3mra21",
+      "machineType": "primary",
+      "x": 2022.9113818431488,
+      "y": 370.81624184381826,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kfzlj_5flyxx",
+      "machineType": "intermediate",
+      "x": 1154.8115602296293,
+      "y": 1032.7909218579384,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kg02f_zkzmoy",
+      "machineType": "sentence",
+      "x": 1222.2037687739662,
+      "y": 1310.3743259982557,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5khbf8_g9agrt",
+      "machineType": "sentence",
+      "x": 4303.7312429744,
+      "y": 1221.861158157776,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kht0j_f63z8g",
+      "machineType": "stanza",
+      "x": 2873.2998212204384,
+      "y": 1975.330840714508,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5ki08u_f2f0iy",
+      "machineType": "poem",
+      "x": 4937.990636925486,
+      "y": 2580.727862848741,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kibcz_hg0f0x",
+      "machineType": "stanza",
+      "x": 7710.921698745321,
+      "y": 1988.854228903766,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kj87v_bbrrz5",
+      "machineType": "sentence",
+      "x": 6826.005984520042,
+      "y": 1347.183580901171,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kj8ch_gbtz6p",
+      "machineType": "sentence",
+      "x": 8278.591450416423,
+      "y": 1538.2924626279816,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kjso9_3zsqmt",
+      "machineType": "intermediate",
+      "x": 9483.132188221973,
+      "y": 1417.3394921580932,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt5kkikd_a2l54g",
+      "machineType": "intermediate",
+      "x": 9894.60129646518,
+      "y": 1400.9795218252889,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6ciu2r_ypcuku",
+      "machineType": "word",
+      "x": 10049.267925033984,
+      "y": 1055.7301192782522,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6ciuau_pjwepp",
+      "machineType": "word",
+      "x": 3413.5180625501057,
+      "y": 665.4004783763712,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6ciuhv_vrnxl4",
+      "machineType": "word",
+      "x": 4187.324753415173,
+      "y": 773.5781214333477,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6ciuqn_t6fvcc",
+      "machineType": "word",
+      "x": 4574.07354601483,
+      "y": 783.588751127706,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6ciuxq_zlmbi4",
+      "machineType": "word",
+      "x": 5208.138783743172,
+      "y": 780.6244224918984,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6crfun_1mn0xk",
+      "machineType": "word",
+      "x": 4866.584778430916,
+      "y": 781.9045881668111,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6cz4dg_mjjjwp",
+      "machineType": "word",
+      "x": 6888.660613893599,
+      "y": 1049.71980182895,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6cz4im_z4wti9",
+      "machineType": "word",
+      "x": 6607.969809345285,
+      "y": 1052.5495651854603,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6cz4ns_62pzf9",
+      "machineType": "word",
+      "x": 6320.581486511789,
+      "y": 1048.677186555877,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6cz4s5_ouajfe",
+      "machineType": "word",
+      "x": 7209.723875776468,
+      "y": 1035.868618611501,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6cz4we_4c8hgu",
+      "machineType": "word",
+      "x": 7483.529814416162,
+      "y": 1039.592180458534,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6czl7l_82kdv8",
+      "machineType": "primary",
+      "x": 6544.24971182428,
+      "y": 839.1236369035288,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dh0no_zzbtt3",
+      "machineType": "word",
+      "x": 8138.864297385651,
+      "y": 962.5919383458497,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dh0sr_mushea",
+      "machineType": "word",
+      "x": 8496.67023602535,
+      "y": 989.996222318038,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dh0xd_37v4v8",
+      "machineType": "word",
+      "x": 8800.896028383528,
+      "y": 1071.017642178977,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dh11x_0fa0ug",
+      "machineType": "word",
+      "x": 9038.14663788983,
+      "y": 1134.1666834103319,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dh17l_6of4gf",
+      "machineType": "word",
+      "x": 9340.975155765338,
+      "y": 1213.8478544330967,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dhv04_in5qux",
+      "machineType": "word",
+      "x": 10489.088069429357,
+      "y": 966.4643325559057,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dhv7h_fu7als",
+      "machineType": "word",
+      "x": 10800.01138007273,
+      "y": 761.5276943435042,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dhvey_0p32nt",
+      "machineType": "word",
+      "x": 11124.32972728648,
+      "y": 929.6769600236648,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6dhvmp_sxaxmq",
+      "machineType": "word",
+      "x": 11579.472934864545,
+      "y": 1044.2090898150732,
+      "letter": null,
+      "symbol": null,
+      "orientation": "vertical",
+      "reversed": false
+    }
+  ],
+  "connections": [
+    {
+      "id": "connection_mt5jddpx_lljp4b",
+      "fromPortId": "node_mt5ja1h5_934qjv_output",
+      "toPortId": "node_mt5jd0bi_u4alux_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jdjsk_peantx",
+      "fromPortId": "node_mt5jd0bi_u4alux_split_2",
+      "toPortId": "node_mt5jdbnb_6e7dxs_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jmg4f_ihy7p2",
+      "fromPortId": "node_mt5jdbvy_mxf6c7_split_3",
+      "toPortId": "node_mt5jm49k_bklddk_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jmo3m_yp5jyq",
+      "fromPortId": "node_mt5jd0bi_u4alux_split_1",
+      "toPortId": "node_mt5jdbhr_l0dnm7_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jmtog_5rirao",
+      "fromPortId": "node_mt5jd0bi_u4alux_split_3",
+      "toPortId": "node_mt5jdbvy_mxf6c7_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jmwxs_fkdd2h",
+      "fromPortId": "node_mt5jdbvy_mxf6c7_split_1",
+      "toPortId": "node_mt5jdocs_6ejbuz_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jnlk7_k4t6kh",
+      "fromPortId": "node_mt5jacf2_uf0fie_output",
+      "toPortId": "node_mt5jnjj7_k5j1x4_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jns1t_s4icbs",
+      "fromPortId": "node_mt5jad35_ijjpp2_output",
+      "toPortId": "node_mt5jnq0c_4siqwj_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jnu9e_gafrgm",
+      "fromPortId": "node_mt5jnq0c_4siqwj_split_2",
+      "toPortId": "node_mt5jnq4b_pake13_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jrvik_blg2xp",
+      "fromPortId": "node_mt5jag0n_nup6an_output",
+      "toPortId": "node_mt5jrqji_jhfn13_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jrx79_5w25dj",
+      "fromPortId": "node_mt5jrqji_jhfn13_split_3",
+      "toPortId": "node_mt5jrq9t_og5gip_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jrz8e_jti371",
+      "fromPortId": "node_mt5jrqji_jhfn13_split_2",
+      "toPortId": "node_mt5jrq0b_53xapn_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5js1gk_e9f4w3",
+      "fromPortId": "node_mt5jrqji_jhfn13_split_1",
+      "toPortId": "node_mt5jrpny_xnnrbx_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5js327_23gvs4",
+      "fromPortId": "node_mt5jrq9t_og5gip_split_2",
+      "toPortId": "node_mt5jrpey_6pauoh_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5js6pm_r6y2ns",
+      "fromPortId": "node_mt5jrq0b_53xapn_split_2",
+      "toPortId": "node_mt5js4u7_hrejyi_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jsfty_506pnw",
+      "fromPortId": "node_mt5jrq9t_og5gip_split_3",
+      "toPortId": "node_mt5jsdan_910myq_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jshyq_cgqtsg",
+      "fromPortId": "node_mt5jrq9t_og5gip_split_1",
+      "toPortId": "node_mt5jsdic_jcsya9_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jt9uh_jyf77t",
+      "fromPortId": "node_mt5jaig1_7mjnpk_output",
+      "toPortId": "node_mt5jt7vh_lv7c46_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jtkt7_9nrz5p",
+      "fromPortId": "node_mt5jajq3_rcs7kn_output",
+      "toPortId": "node_mt5jtiiu_acna5k_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5juhte_c6zdvo",
+      "fromPortId": "node_mt5jal10_gh5pxt_output",
+      "toPortId": "node_mt5jueqs_knbmpb_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jujrz_zu6j9x",
+      "fromPortId": "node_mt5jueqs_knbmpb_split_3",
+      "toPortId": "node_mt5juga2_5owczc_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5juovz_rqkv2o",
+      "fromPortId": "node_mt5jueqs_knbmpb_split_2",
+      "toPortId": "node_mt5jun8x_mj3b6f_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jur3a_1de8sp",
+      "fromPortId": "node_mt5jueqs_knbmpb_split_1",
+      "toPortId": "node_mt5junco_h2fu2z_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jvn28_n4lf6j",
+      "fromPortId": "node_mt5javz5_ckglnv_output",
+      "toPortId": "node_mt5jvffj_3bloca_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jvo9k_y8ozp5",
+      "fromPortId": "node_mt5jvffj_3bloca_split_3",
+      "toPortId": "node_mt5jvjk9_43axoq_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jvqsv_kqjxic",
+      "fromPortId": "node_mt5jvffj_3bloca_split_2",
+      "toPortId": "node_mt5jvfl3_c8pu2b_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jw332_uw9box",
+      "fromPortId": "node_mt5jaxsp_96j8hx_output",
+      "toPortId": "node_mt5jvfsl_rsz11s_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jw9xk_x3nwe1",
+      "fromPortId": "node_mt5jvfsl_rsz11s_split_2",
+      "toPortId": "node_mt5jw7k1_2unmna_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jxksn_0u05op",
+      "fromPortId": "node_mt5jb7p4_w8q8fq_output",
+      "toPortId": "node_mt5jxiki_aol8wf_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jxmcm_psoc2i",
+      "fromPortId": "node_mt5jb8xz_ckxwpw_output",
+      "toPortId": "node_mt5jxioi_s6un9h_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jyfle_01wrv9",
+      "fromPortId": "node_mt5jb9qq_kdufj5_output",
+      "toPortId": "node_mt5jye0z_snf4ro_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jyjpc_lh7lsp",
+      "fromPortId": "node_mt5jye0z_snf4ro_split_3",
+      "toPortId": "node_mt5jycd9_swgu7q_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jykgt_z3dfht",
+      "fromPortId": "node_mt5jye0z_snf4ro_split_2",
+      "toPortId": "node_mt5jyc4x_jtpoyb_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jyll8_hp1xpj",
+      "fromPortId": "node_mt5jye0z_snf4ro_split_1",
+      "toPortId": "node_mt5jyc93_g8pw9e_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jz1iz_ndk4c6",
+      "fromPortId": "node_mt5jbayd_qmmi3d_output",
+      "toPortId": "node_mt5jyzuy_8vufv6_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jz4oi_pq1lnu",
+      "fromPortId": "node_mt5jyzuy_8vufv6_split_3",
+      "toPortId": "node_mt5jyzqx_koou69_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5jzj0p_ncne86",
+      "fromPortId": "node_mt5jbcp5_9fu2lo_output",
+      "toPortId": "node_mt5jzhes_367j22_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k071f_myv37l",
+      "fromPortId": "node_mt5jbix0_qgsdgj_output",
+      "toPortId": "node_mt5k034l_prsnbq_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k08mx_qgzyt4",
+      "fromPortId": "node_mt5k034l_prsnbq_split_3",
+      "toPortId": "node_mt5k030z_drngv1_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k0adq_sfpg09",
+      "fromPortId": "node_mt5k034l_prsnbq_split_2",
+      "toPortId": "node_mt5k04kj_ahvogm_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k0irs_zejib9",
+      "fromPortId": "node_mt5jbjie_wdg5pe_output",
+      "toPortId": "node_mt5k0hbf_jfwtif_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k0jgj_i19iyn",
+      "fromPortId": "node_mt5k0hbf_jfwtif_split_3",
+      "toPortId": "node_mt5k0h74_hcvlil_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k0qf7_ep0mg4",
+      "fromPortId": "node_mt5jbkn5_78262w_output",
+      "toPortId": "node_mt5k0ov8_db7l1q_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k10rp_64b33k",
+      "fromPortId": "node_mt5k0ov8_db7l1q_split_3",
+      "toPortId": "node_mt5k0on1_4nptcp_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5k1287_ga7hzs",
+      "fromPortId": "node_mt5k0ov8_db7l1q_split_2",
+      "toPortId": "node_mt5k0or7_eqcf0p_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kbxwp_ppqy2g",
+      "fromPortId": "node_mt5jbrci_aemf9w_output",
+      "toPortId": "node_mt5kbw21_imb0wc_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kc65x_kf5617",
+      "fromPortId": "node_mt5jc025_lag9kh_output",
+      "toPortId": "node_mt5kc4by_64mr42_split_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kcui6_ztfn8i",
+      "fromPortId": "node_mt5jm49k_bklddk_split_3",
+      "toPortId": "node_mt5kcnzq_ksoozy_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kd4gc_mgs523",
+      "fromPortId": "node_mt5k030z_drngv1_split_3",
+      "toPortId": "node_mt5kcnzq_ksoozy_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kd9hm_7lbz7a",
+      "fromPortId": "node_mt5jsdan_910myq_split_3",
+      "toPortId": "node_mt5kcnzq_ksoozy_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kefwz_5ijv9j",
+      "fromPortId": "node_mt5kebby_vl1v4z_output",
+      "toPortId": "node_mt5kedu9_pdezhg_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kfd9t_bgdxms",
+      "fromPortId": "node_mt5kfbj6_3mra21_output",
+      "toPortId": "node_mt5kf5rt_8ipsis_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt5kgcb2_ruuhym",
+      "fromPortId": "node_mt5kfzlj_5flyxx_output",
+      "toPortId": "node_mt5kg02f_zkzmoy_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgijs_g28vgw",
+      "fromPortId": "node_mt5kcnzq_ksoozy_output",
+      "toPortId": "node_mt5kfzlj_5flyxx_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgjnn_2t5z3y",
+      "fromPortId": "node_mt5kdlf7_148dnm_output",
+      "toPortId": "node_mt5kfzlj_5flyxx_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgkku_ihn2fw",
+      "fromPortId": "node_mt5kedu9_pdezhg_output",
+      "toPortId": "node_mt5kfzlj_5flyxx_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgnbb_acc79v",
+      "fromPortId": "node_mt5kexz9_wx6kdn_output",
+      "toPortId": "node_mt5kfzlj_5flyxx_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgrsp_2htf5u",
+      "fromPortId": "node_mt5kexv3_d30sps_output",
+      "toPortId": "node_mt5kfzlj_5flyxx_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgu5f_tsuh1d",
+      "fromPortId": "node_mt5kf5rt_8ipsis_output",
+      "toPortId": "node_mt5kg02f_zkzmoy_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kgvya_51qkno",
+      "fromPortId": "node_mt5kf5nx_nzffyd_output",
+      "toPortId": "node_mt5kg02f_zkzmoy_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5khixj_rv8u2g",
+      "fromPortId": "node_mt5kg02f_zkzmoy_output",
+      "toPortId": "node_mt5jc77i_6f0zpr_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt5khla3_67lu76",
+      "fromPortId": "node_mt5khbf8_g9agrt_output",
+      "toPortId": "node_mt5jcbjf_lc50ho_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt5khuqn_etu2si",
+      "fromPortId": "node_mt5jc77i_6f0zpr_output",
+      "toPortId": "node_mt5kht0j_f63z8g_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt5khw39_f2lgeb",
+      "fromPortId": "node_mt5jcbjf_lc50ho_output",
+      "toPortId": "node_mt5kht0j_f63z8g_input_4",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt5ki2e2_qavbsx",
+      "fromPortId": "node_mt5kht0j_f63z8g_output",
+      "toPortId": "node_mt5ki08u_f2f0iy_input_0",
+      "dataType": "stanza"
+    },
+    {
+      "id": "connection_mt5kie8q_nvtnr5",
+      "fromPortId": "node_mt5kibcz_hg0f0x_output",
+      "toPortId": "node_mt5ki08u_f2f0iy_input_4",
+      "dataType": "stanza"
+    },
+    {
+      "id": "connection_mt5kkl1j_auosqq",
+      "fromPortId": "node_mt5kkikd_a2l54g_output",
+      "toPortId": "node_mt5kj8ch_gbtz6p_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt5kko98_z4abf6",
+      "fromPortId": "node_mt5kjso9_3zsqmt_output",
+      "toPortId": "node_mt5kj8ch_gbtz6p_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6bpajj_7tg78y",
+      "fromPortId": "node_mt5k0on1_4nptcp_split_3",
+      "toPortId": "node_mt5kdlf7_148dnm_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bpjhi_xuug1d",
+      "fromPortId": "node_mt5juga2_5owczc_split_3",
+      "toPortId": "node_mt5kdlf7_148dnm_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bpoii_zv35l1",
+      "fromPortId": "node_mt5jsdan_910myq_split_2",
+      "toPortId": "node_mt5kdlf7_148dnm_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bpys7_z1bd9h",
+      "fromPortId": "node_mt5k030z_drngv1_split_2",
+      "toPortId": "node_mt5kebby_vl1v4z_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bq87s_9v7l6t",
+      "fromPortId": "node_mt5jvjk9_43axoq_split_3",
+      "toPortId": "node_mt5kebby_vl1v4z_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bqdnu_zkurp0",
+      "fromPortId": "node_mt5jtiiu_acna5k_split_3",
+      "toPortId": "node_mt5kebby_vl1v4z_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bqm1o_vb6oyq",
+      "fromPortId": "node_mt5juga2_5owczc_split_2",
+      "toPortId": "node_mt5kebby_vl1v4z_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6bqvuc_8e0ebj",
+      "fromPortId": "node_mt5k0on1_4nptcp_split_2",
+      "toPortId": "node_mt5kebby_vl1v4z_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6br1yg_zmr31x",
+      "fromPortId": "node_mt5jsdan_910myq_split_1",
+      "toPortId": "node_mt5kedu9_pdezhg_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6br7rk_2k1bkn",
+      "fromPortId": "node_mt5jyzqx_koou69_split_3",
+      "toPortId": "node_mt5kedu9_pdezhg_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6brgpw_0hl2mn",
+      "fromPortId": "node_mt5kbw21_imb0wc_split_3",
+      "toPortId": "node_mt5kedu9_pdezhg_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cc20z_mih3ue",
+      "fromPortId": "node_mt5k0h74_hcvlil_split_3",
+      "toPortId": "node_mt5kedu9_pdezhg_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cdfb9_e305kz",
+      "fromPortId": "node_mt5jm49k_bklddk_split_2",
+      "toPortId": "node_mt5kexz9_wx6kdn_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cdkqc_3hnxye",
+      "fromPortId": "node_mt5jycd9_swgu7q_split_3",
+      "toPortId": "node_mt5kexz9_wx6kdn_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cdo38_8n81sy",
+      "fromPortId": "node_mt5jnq0c_4siqwj_split_3",
+      "toPortId": "node_mt5kexz9_wx6kdn_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ceayd_8cw3hw",
+      "fromPortId": "node_mt5k0on1_4nptcp_split_1",
+      "toPortId": "node_mt5kexv3_d30sps_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ceeh2_0qwx3h",
+      "fromPortId": "node_mt5juga2_5owczc_split_1",
+      "toPortId": "node_mt5kexv3_d30sps_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cehgt_62u050",
+      "fromPortId": "node_mt5jrpey_6pauoh_split_3",
+      "toPortId": "node_mt5kexv3_d30sps_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cf4bn_v21ksq",
+      "fromPortId": "node_mt5k0h74_hcvlil_split_2",
+      "toPortId": "node_mt5kfbj6_3mra21_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cf8mm_tpdzv4",
+      "fromPortId": "node_mt5jvjk9_43axoq_split_2",
+      "toPortId": "node_mt5kfbj6_3mra21_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cfedf_klctti",
+      "fromPortId": "node_mt5jycd9_swgu7q_split_2",
+      "toPortId": "node_mt5kfbj6_3mra21_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cfopc_ezyiqq",
+      "fromPortId": "node_mt5jycd9_swgu7q_split_1",
+      "toPortId": "node_mt5kf5rt_8ipsis_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cftko_mvyjxz",
+      "fromPortId": "node_mt5jrpey_6pauoh_split_2",
+      "toPortId": "node_mt5kf5rt_8ipsis_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cfzyo_2elrd7",
+      "fromPortId": "node_mt5k030z_drngv1_split_1",
+      "toPortId": "node_mt5kf5rt_8ipsis_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cgar5_4gc0iy",
+      "fromPortId": "node_mt5k0h74_hcvlil_split_1",
+      "toPortId": "node_mt5kf5rt_8ipsis_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6chkpx_fhxs4e",
+      "fromPortId": "node_mt5jrpey_6pauoh_split_1",
+      "toPortId": "node_mt5kf5nx_nzffyd_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6chrav_49kc72",
+      "fromPortId": "node_mt5jzhes_367j22_split_3",
+      "toPortId": "node_mt5kf5nx_nzffyd_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6chxby_3v9494",
+      "fromPortId": "node_mt5kbw21_imb0wc_split_2",
+      "toPortId": "node_mt5kf5nx_nzffyd_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ci1lp_ly3ssz",
+      "fromPortId": "node_mt5jm49k_bklddk_split_1",
+      "toPortId": "node_mt5kf5nx_nzffyd_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ci791_zlk8e6",
+      "fromPortId": "node_mt5jxiki_aol8wf_split_3",
+      "toPortId": "node_mt5kf5nx_nzffyd_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cizz9_r441zl",
+      "fromPortId": "node_mt6ciuau_pjwepp_output",
+      "toPortId": "node_mt5khbf8_g9agrt_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6cj5ar_nu1q8k",
+      "fromPortId": "node_mt6ciuxq_zlmbi4_output",
+      "toPortId": "node_mt5khbf8_g9agrt_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6cjlrb_u3exr0",
+      "fromPortId": "node_mt5jdbvy_mxf6c7_split_2",
+      "toPortId": "node_mt6ciuau_pjwepp_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ck90x_u512o0",
+      "fromPortId": "node_mt5k034l_prsnbq_split_1",
+      "toPortId": "node_mt6ciuau_pjwepp_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ckeel_gphpcq",
+      "fromPortId": "node_mt5jsdic_jcsya9_split_3",
+      "toPortId": "node_mt6ciuau_pjwepp_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ckvtv_bse3bp",
+      "fromPortId": "node_mt5k0or7_eqcf0p_split_3",
+      "toPortId": "node_mt6ciu2r_ypcuku_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cl7ex_nic8nb",
+      "fromPortId": "node_mt5jun8x_mj3b6f_split_3",
+      "toPortId": "node_mt6ciu2r_ypcuku_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6clfdf_87dpf9",
+      "fromPortId": "node_mt5jsdic_jcsya9_split_2",
+      "toPortId": "node_mt6ciu2r_ypcuku_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6coxzu_czgefa",
+      "fromPortId": "node_mt5jnq4b_pake13_split_3",
+      "toPortId": "node_mt6ciuhv_vrnxl4_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cp4mm_1mhwqg",
+      "fromPortId": "node_mt5jdocs_6ejbuz_split_3",
+      "toPortId": "node_mt6ciuhv_vrnxl4_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cpahy_u8v35s",
+      "fromPortId": "node_mt5jc20e_w4z89k_output",
+      "toPortId": "node_mt6ciuhv_vrnxl4_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cpqeo_33wdxs",
+      "fromPortId": "node_mt5jdocs_6ejbuz_split_2",
+      "toPortId": "node_mt6ciuqn_t6fvcc_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cpzk9_k2fodm",
+      "fromPortId": "node_mt5jyc4x_jtpoyb_split_3",
+      "toPortId": "node_mt6ciuqn_t6fvcc_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cq5p9_hj0lx1",
+      "fromPortId": "node_mt5jnq4b_pake13_split_2",
+      "toPortId": "node_mt6ciuqn_t6fvcc_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cqzae_1wy1fl",
+      "fromPortId": "node_mt6ciuhv_vrnxl4_output",
+      "toPortId": "node_mt5khbf8_g9agrt_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6cr0u8_u5g371",
+      "fromPortId": "node_mt6ciuqn_t6fvcc_output",
+      "toPortId": "node_mt5khbf8_g9agrt_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6crigj_juj33m",
+      "fromPortId": "node_mt6crfun_1mn0xk_output",
+      "toPortId": "node_mt5khbf8_g9agrt_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6crp6m_46cyxh",
+      "fromPortId": "node_mt5jyc4x_jtpoyb_split_2",
+      "toPortId": "node_mt6crfun_1mn0xk_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6crrsz_bu1855",
+      "fromPortId": "node_mt5jvjk9_43axoq_split_1",
+      "toPortId": "node_mt6crfun_1mn0xk_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6crzbo_waa70o",
+      "fromPortId": "node_mt5jtiiu_acna5k_split_2",
+      "toPortId": "node_mt6crfun_1mn0xk_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cs2fj_kkiuqj",
+      "fromPortId": "node_mt5jun8x_mj3b6f_split_2",
+      "toPortId": "node_mt6crfun_1mn0xk_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cs9nj_5egody",
+      "fromPortId": "node_mt5k0or7_eqcf0p_split_2",
+      "toPortId": "node_mt6crfun_1mn0xk_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6csgip_25j39u",
+      "fromPortId": "node_mt5jsdic_jcsya9_split_1",
+      "toPortId": "node_mt6ciuxq_zlmbi4_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6csrfp_lyg8i6",
+      "fromPortId": "node_mt5jzhes_367j22_split_2",
+      "toPortId": "node_mt6ciuxq_zlmbi4_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6csxhe_bnawij",
+      "fromPortId": "node_mt5kbw21_imb0wc_split_1",
+      "toPortId": "node_mt6ciuxq_zlmbi4_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ctedd_4hivth",
+      "fromPortId": "node_mt5jdocs_6ejbuz_split_1",
+      "toPortId": "node_mt6ciuxq_zlmbi4_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cthqo_hw7cwd",
+      "fromPortId": "node_mt5jxiki_aol8wf_split_2",
+      "toPortId": "node_mt6ciuxq_zlmbi4_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6cw17v_sjg3u2",
+      "fromPortId": "node_mt5kj87v_bbrrz5_output",
+      "toPortId": "node_mt5jc9zw_04gl80_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt6cw3uw_gzep05",
+      "fromPortId": "node_mt5jc9zw_04gl80_output",
+      "toPortId": "node_mt5kibcz_hg0f0x_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt6cw62e_t5kwqy",
+      "fromPortId": "node_mt5jc8g5_rminxg_output",
+      "toPortId": "node_mt5kibcz_hg0f0x_input_4",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt6cw7mg_991vny",
+      "fromPortId": "node_mt5kj8ch_gbtz6p_output",
+      "toPortId": "node_mt5jc8g5_rminxg_input_0",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt6cxa7b_6je6g3",
+      "fromPortId": "node_mt6ciu2r_ypcuku_output",
+      "toPortId": "node_mt5kkikd_a2l54g_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6cz935_3zg11h",
+      "fromPortId": "node_mt6cz4ns_62pzf9_output",
+      "toPortId": "node_mt5kj87v_bbrrz5_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6czahb_sxhhoa",
+      "fromPortId": "node_mt6cz4im_z4wti9_output",
+      "toPortId": "node_mt5kj87v_bbrrz5_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6czbkm_hrdc3c",
+      "fromPortId": "node_mt6cz4dg_mjjjwp_output",
+      "toPortId": "node_mt5kj87v_bbrrz5_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6czcav_5xwf48",
+      "fromPortId": "node_mt6cz4s5_ouajfe_output",
+      "toPortId": "node_mt5kj87v_bbrrz5_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6czdk0_7urlsr",
+      "fromPortId": "node_mt6cz4we_4c8hgu_output",
+      "toPortId": "node_mt5kj87v_bbrrz5_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6czmxh_hk1l87",
+      "fromPortId": "node_mt6czl7l_82kdv8_output",
+      "toPortId": "node_mt6cz4im_z4wti9_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d067j_t1300a",
+      "fromPortId": "node_mt5jvfl3_c8pu2b_split_3",
+      "toPortId": "node_mt6cz4ns_62pzf9_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d0e3u_2ab8kd",
+      "fromPortId": "node_mt5jt7vh_lv7c46_split_3",
+      "toPortId": "node_mt6cz4ns_62pzf9_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d0uv5_8cs224",
+      "fromPortId": "node_mt5jxioi_s6un9h_split_3",
+      "toPortId": "node_mt6czl7l_82kdv8_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d1cxo_fe4kdj",
+      "fromPortId": "node_mt5jdbnb_6e7dxs_split_3",
+      "toPortId": "node_mt6czl7l_82kdv8_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d1jbn_51a5o3",
+      "fromPortId": "node_mt5jyc4x_jtpoyb_split_1",
+      "toPortId": "node_mt6czl7l_82kdv8_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d202i_6f0dvv",
+      "fromPortId": "node_mt5jvfsl_rsz11s_split_3",
+      "toPortId": "node_mt6cz4im_z4wti9_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d27gd_v46ydn",
+      "fromPortId": "node_mt5jvfl3_c8pu2b_split_2",
+      "toPortId": "node_mt6cz4im_z4wti9_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d2f2j_v6x8ge",
+      "fromPortId": "node_mt5jyc93_g8pw9e_split_3",
+      "toPortId": "node_mt6cz4im_z4wti9_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6d2naq_xicau5",
+      "fromPortId": "node_mt5jnq4b_pake13_split_1",
+      "toPortId": "node_mt6cz4im_z4wti9_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ddglk_b2b6bo",
+      "fromPortId": "node_mt5jvfl3_c8pu2b_split_1",
+      "toPortId": "node_mt6cz4dg_mjjjwp_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ddvtk_wqo3us",
+      "fromPortId": "node_mt5k0hbf_jfwtif_split_2",
+      "toPortId": "node_mt6cz4dg_mjjjwp_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6de7db_35n4xx",
+      "fromPortId": "node_mt5ja363_yxbcrp_output",
+      "toPortId": "node_mt6cz4s5_ouajfe_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dec23_zj0j8b",
+      "fromPortId": "node_mt5jyzuy_8vufv6_split_2",
+      "toPortId": "node_mt6cz4s5_ouajfe_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6degru_qe5kcq",
+      "fromPortId": "node_mt5jyc93_g8pw9e_split_2",
+      "toPortId": "node_mt6cz4s5_ouajfe_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6demro_wzoan1",
+      "fromPortId": "node_mt5k04kj_ahvogm_split_3",
+      "toPortId": "node_mt6cz4s5_ouajfe_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6deuyo_v26h1o",
+      "fromPortId": "node_mt5kc4by_64mr42_split_3",
+      "toPortId": "node_mt6cz4we_4c8hgu_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6df7pb_snazud",
+      "fromPortId": "node_mt5jrq0b_53xapn_split_3",
+      "toPortId": "node_mt6cz4we_4c8hgu_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dffp7_0l1duz",
+      "fromPortId": "node_mt5jdbnb_6e7dxs_split_2",
+      "toPortId": "node_mt6cz4we_4c8hgu_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dfnor_h5j4ar",
+      "fromPortId": "node_mt5jw7k1_2unmna_split_3",
+      "toPortId": "node_mt6cz4we_4c8hgu_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dhh80_g5v1gc",
+      "fromPortId": "node_mt6dh0no_zzbtt3_output",
+      "toPortId": "node_mt5kjso9_3zsqmt_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6dhiwt_h2kvsm",
+      "fromPortId": "node_mt6dh0sr_mushea_output",
+      "toPortId": "node_mt5kjso9_3zsqmt_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6dhlzi_o9btbw",
+      "fromPortId": "node_mt6dh0xd_37v4v8_output",
+      "toPortId": "node_mt5kjso9_3zsqmt_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6dhna6_xromdh",
+      "fromPortId": "node_mt6dh11x_0fa0ug_output",
+      "toPortId": "node_mt5kjso9_3zsqmt_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6dhosd_l16s7y",
+      "fromPortId": "node_mt6dh17l_6of4gf_output",
+      "toPortId": "node_mt5kjso9_3zsqmt_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6di0s6_y4ao4d",
+      "fromPortId": "node_mt6dhv04_in5qux_output",
+      "toPortId": "node_mt5kkikd_a2l54g_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6di2ll_ztqsc1",
+      "fromPortId": "node_mt6dhv7h_fu7als_output",
+      "toPortId": "node_mt5kkikd_a2l54g_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6di3vs_m6wl3s",
+      "fromPortId": "node_mt6dhvey_0p32nt_output",
+      "toPortId": "node_mt5kkikd_a2l54g_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6di5wr_0bhbsm",
+      "fromPortId": "node_mt6dhvmp_sxaxmq_output",
+      "toPortId": "node_mt5kkikd_a2l54g_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6djx0p_sf6b3y",
+      "fromPortId": "node_mt5k0or7_eqcf0p_split_1",
+      "toPortId": "node_mt6dh0no_zzbtt3_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dk43d_qbifvr",
+      "fromPortId": "node_mt5jun8x_mj3b6f_split_1",
+      "toPortId": "node_mt6dh0no_zzbtt3_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dkdl6_h31otc",
+      "fromPortId": "node_mt5js4u7_hrejyi_split_3",
+      "toPortId": "node_mt6dh0no_zzbtt3_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dkk5m_f7vlec",
+      "fromPortId": "node_mt5jyc93_g8pw9e_split_1",
+      "toPortId": "node_mt6dh0no_zzbtt3_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dlxmr_9184qq",
+      "fromPortId": "node_mt5jt7vh_lv7c46_split_2",
+      "toPortId": "node_mt6dh0sr_mushea_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dn6k4_ktifjf",
+      "fromPortId": "node_mt5k04kj_ahvogm_split_2",
+      "toPortId": "node_mt6dh0sr_mushea_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dncb0_koum6x",
+      "fromPortId": "node_mt5jyzqx_koou69_split_2",
+      "toPortId": "node_mt6dh0sr_mushea_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dnf5m_5nn823",
+      "fromPortId": "node_mt5jxioi_s6un9h_split_1",
+      "toPortId": "node_mt6dh0sr_mushea_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dnp7q_yra7wx",
+      "fromPortId": "node_mt5kc4by_64mr42_split_2",
+      "toPortId": "node_mt6dh0xd_37v4v8_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dods3_qhgooo",
+      "fromPortId": "node_mt5junco_h2fu2z_split_3",
+      "toPortId": "node_mt6dh0xd_37v4v8_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dohq0_wpp2hg",
+      "fromPortId": "node_mt5junco_h2fu2z_split_1",
+      "toPortId": "node_mt6dh0xd_37v4v8_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dosn0_ku6wo5",
+      "fromPortId": "node_mt5jvffj_3bloca_split_1",
+      "toPortId": "node_mt6dh0xd_37v4v8_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6doxz6_hdd34u",
+      "fromPortId": "node_mt5jnjj7_k5j1x4_split_3",
+      "toPortId": "node_mt6dh0xd_37v4v8_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dp9hb_ff8fdb",
+      "fromPortId": "node_mt5jyzuy_8vufv6_split_1",
+      "toPortId": "node_mt6dh11x_0fa0ug_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dpfgi_sv49gy",
+      "fromPortId": "node_mt5jnq0c_4siqwj_split_1",
+      "toPortId": "node_mt6dh11x_0fa0ug_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dpl2d_5gvtz9",
+      "fromPortId": "node_mt5jtiiu_acna5k_split_1",
+      "toPortId": "node_mt6dh11x_0fa0ug_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dpx8u_erz0vw",
+      "fromPortId": "node_mt5jdbnb_6e7dxs_split_1",
+      "toPortId": "node_mt6dh17l_6of4gf_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dq6et_6okei3",
+      "fromPortId": "node_mt5k04kj_ahvogm_split_1",
+      "toPortId": "node_mt6dh17l_6of4gf_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6dqcfc_7tymqx",
+      "fromPortId": "node_mt5js4u7_hrejyi_split_2",
+      "toPortId": "node_mt6dh17l_6of4gf_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6e9mdb_lpdl1z",
+      "fromPortId": "node_mt5kc4by_64mr42_split_1",
+      "toPortId": "node_mt6dhv04_in5qux_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6e9tmt_d8t8f7",
+      "fromPortId": "node_mt5js4u7_hrejyi_split_1",
+      "toPortId": "node_mt6dhv04_in5qux_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ea0lz_ambz4m",
+      "fromPortId": "node_mt5jdbhr_l0dnm7_split_3",
+      "toPortId": "node_mt6dhv04_in5qux_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ea7ln_6t961f",
+      "fromPortId": "node_mt5jw7k1_2unmna_split_1",
+      "toPortId": "node_mt6dhv04_in5qux_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eaqxb_79xtiq",
+      "fromPortId": "node_mt5jyzqx_koou69_split_1",
+      "toPortId": "node_mt6dhv7h_fu7als_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eavb9_sit1r4",
+      "fromPortId": "node_mt5k0ov8_db7l1q_split_1",
+      "toPortId": "node_mt6dhv7h_fu7als_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eb7x6_w56k39",
+      "fromPortId": "node_mt5k0hbf_jfwtif_split_1",
+      "toPortId": "node_mt6dhvey_0p32nt_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ebeq8_fi6fod",
+      "fromPortId": "node_mt5jrq0b_53xapn_split_1",
+      "toPortId": "node_mt6dhvey_0p32nt_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ebo5e_k39vdu",
+      "fromPortId": "node_mt5jrpny_xnnrbx_split_3",
+      "toPortId": "node_mt6dhvey_0p32nt_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ebxmj_a1xuf5",
+      "fromPortId": "node_mt5jvfsl_rsz11s_split_1",
+      "toPortId": "node_mt6dhvey_0p32nt_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eca5c_w2nku1",
+      "fromPortId": "node_mt5jrpny_xnnrbx_split_2",
+      "toPortId": "node_mt6dhvmp_sxaxmq_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eceyi_jpbk65",
+      "fromPortId": "node_mt5jrpny_xnnrbx_split_1",
+      "toPortId": "node_mt6dhvmp_sxaxmq_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6eckuc_dqnwy1",
+      "fromPortId": "node_mt5jdbhr_l0dnm7_split_2",
+      "toPortId": "node_mt6dhvmp_sxaxmq_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ecm6j_500866",
+      "fromPortId": "node_mt5jbblp_n6f61a_output",
+      "toPortId": "node_mt6dhvmp_sxaxmq_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6ectoc_ajk8pb",
+      "fromPortId": "node_mt5jnjj7_k5j1x4_split_2",
+      "toPortId": "node_mt6dhvmp_sxaxmq_input_3",
+      "dataType": "letter"
+    }
+  ]
+}

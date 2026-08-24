@@ -1,0 +1,460 @@
+{
+  "app": "PoetryFactory",
+  "version": 1,
+  "createdAt": "2026-08-24T04:36:15.563Z",
+  "layout": {
+    "orientation": "horizontal",
+    "reversed": false
+  },
+  "camera": {
+    "zoom": 0.5066311211773207,
+    "scrollX": -610.3365536107865,
+    "scrollY": -158.5121663805692
+  },
+  "nodes": [
+    {
+      "id": "node_mt6qlo9i_byw6md",
+      "machineType": "poem",
+      "x": 1457.7303877777028,
+      "y": 518.4350724321656,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qlpcv_8na5h9",
+      "machineType": "stanza",
+      "x": 1279.6956455649924,
+      "y": 519.0873016852588,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qlu8o_5rcte5",
+      "machineType": "sentence",
+      "x": 1088.1742168881951,
+      "y": 522.3651860157593,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qm251_c06g66",
+      "machineType": "word",
+      "x": 685.2026118444444,
+      "y": 72.57923778838637,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qm29i_fg474l",
+      "machineType": "word",
+      "x": 679.813698232543,
+      "y": 1017.8895873220706,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qm2ec_wztzot",
+      "machineType": "word",
+      "x": 681.4752986613328,
+      "y": 776.1320102721004,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qm2j4_umprmn",
+      "machineType": "word",
+      "x": 681.980439068247,
+      "y": 311.0306498638709,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qm4xw_ro83a0",
+      "machineType": "word",
+      "x": 683.6420394970369,
+      "y": 540.2197836576388,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qnmjd_88j897",
+      "machineType": "letterSource",
+      "x": -374.4223651411014,
+      "y": 308.05897500877023,
+      "letter": "e",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qnpus_knv94x",
+      "machineType": "splitter",
+      "x": 6.768398383889689,
+      "y": 314.15694796661705,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qogj2_z0bt33",
+      "machineType": "letterSource",
+      "x": 486.6663562812945,
+      "y": 391.37319290010566,
+      "letter": "a",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qokk0_t3w68e",
+      "machineType": "letterSource",
+      "x": -1060.8814606448766,
+      "y": 405.37319290010555,
+      "letter": "g",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qomcw_wn91os",
+      "machineType": "splitter",
+      "x": -783.4321360190788,
+      "y": 388.7118754346375,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qorz9_tmgpgm",
+      "machineType": "letterSource",
+      "x": 211.7173772708163,
+      "y": 596.3115379673832,
+      "letter": "i",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qot2c_d1zj52",
+      "machineType": "letterSource",
+      "x": -163.18896904328722,
+      "y": -55.43424033399742,
+      "letter": "n",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qoxuh_2o2b3k",
+      "machineType": "letterSource",
+      "x": -463.07784754045633,
+      "y": 189.7000506489744,
+      "letter": "o",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qoyew_07cr9e",
+      "machineType": "letterSource",
+      "x": 443.2351907030693,
+      "y": 980.0742075404955,
+      "letter": "p",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qp4q4_ersbo0",
+      "machineType": "letterSource",
+      "x": 176.90675833452838,
+      "y": -155.67072709274942,
+      "letter": "r",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qp5pu_3u6q56",
+      "machineType": "letterSource",
+      "x": -416.24137249408795,
+      "y": 558.6054568409252,
+      "letter": "u",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qp78c_o7819r",
+      "machineType": "letterSource",
+      "x": -447.6466819622319,
+      "y": 734.5970112050586,
+      "letter": "v",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qp97e_5gt2to",
+      "machineType": "letterSource",
+      "x": 44.096139398239984,
+      "y": 511.53619994047176,
+      "letter": "y",
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qplbf_gcpuc0",
+      "machineType": "splitter",
+      "x": -163.00797627272254,
+      "y": 563.0708283906984,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qplgf_3dh4zh",
+      "machineType": "splitter",
+      "x": 79.99271495791709,
+      "y": 752.8909300786001,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qpllr_7i241l",
+      "machineType": "splitter",
+      "x": -287.0170557965089,
+      "y": 182.1409289592865,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    },
+    {
+      "id": "node_mt6qplqr_bydt2s",
+      "machineType": "splitter",
+      "x": 23.99271495791777,
+      "y": 58.80224642475446,
+      "letter": null,
+      "symbol": null,
+      "orientation": "horizontal",
+      "reversed": false
+    }
+  ],
+  "connections": [
+    {
+      "id": "connection_mt6qlsc4_g9pxa8",
+      "fromPortId": "node_mt6qlpcv_8na5h9_output",
+      "toPortId": "node_mt6qlo9i_byw6md_input_2",
+      "dataType": "stanza"
+    },
+    {
+      "id": "connection_mt6qlvyy_h1200a",
+      "fromPortId": "node_mt6qlu8o_5rcte5_output",
+      "toPortId": "node_mt6qlpcv_8na5h9_input_2",
+      "dataType": "sentence"
+    },
+    {
+      "id": "connection_mt6qm9g4_3eqfvg",
+      "fromPortId": "node_mt6qm29i_fg474l_output",
+      "toPortId": "node_mt6qlu8o_5rcte5_input_4",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6qmato_jke9fc",
+      "fromPortId": "node_mt6qm2ec_wztzot_output",
+      "toPortId": "node_mt6qlu8o_5rcte5_input_3",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6qmc0h_8hj023",
+      "fromPortId": "node_mt6qm4xw_ro83a0_output",
+      "toPortId": "node_mt6qlu8o_5rcte5_input_2",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6qmdar_pgw2i1",
+      "fromPortId": "node_mt6qm2j4_umprmn_output",
+      "toPortId": "node_mt6qlu8o_5rcte5_input_1",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6qmexx_n68u1g",
+      "fromPortId": "node_mt6qm251_c06g66_output",
+      "toPortId": "node_mt6qlu8o_5rcte5_input_0",
+      "dataType": "word"
+    },
+    {
+      "id": "connection_mt6qns82_d37nyn",
+      "fromPortId": "node_mt6qnmjd_88j897_output",
+      "toPortId": "node_mt6qnpus_knv94x_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qonzp_nphx4h",
+      "fromPortId": "node_mt6qokk0_t3w68e_output",
+      "toPortId": "node_mt6qomcw_wn91os_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qpq5j_0ho6t0",
+      "fromPortId": "node_mt6qp78c_o7819r_output",
+      "toPortId": "node_mt6qplgf_3dh4zh_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qpuyb_i1f2ay",
+      "fromPortId": "node_mt6qp5pu_3u6q56_output",
+      "toPortId": "node_mt6qplbf_gcpuc0_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qq3dx_ly0crm",
+      "fromPortId": "node_mt6qoxuh_2o2b3k_output",
+      "toPortId": "node_mt6qpllr_7i241l_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qq6n1_68eonz",
+      "fromPortId": "node_mt6qot2c_d1zj52_output",
+      "toPortId": "node_mt6qplqr_bydt2s_split_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qqro1_8yxkc8",
+      "fromPortId": "node_mt6qnpus_knv94x_split_0",
+      "toPortId": "node_mt6qm251_c06g66_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qqt4f_v0hhrl",
+      "fromPortId": "node_mt6qnpus_knv94x_split_1",
+      "toPortId": "node_mt6qm251_c06g66_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qr01h_3oci9q",
+      "fromPortId": "node_mt6qnpus_knv94x_split_2",
+      "toPortId": "node_mt6qm4xw_ro83a0_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qrcem_7a619c",
+      "fromPortId": "node_mt6qplqr_bydt2s_split_0",
+      "toPortId": "node_mt6qm251_c06g66_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qrfle_5nizzg",
+      "fromPortId": "node_mt6qplqr_bydt2s_split_1",
+      "toPortId": "node_mt6qm2j4_umprmn_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qrhdq_6q2o32",
+      "fromPortId": "node_mt6qplqr_bydt2s_split_2",
+      "toPortId": "node_mt6qm2j4_umprmn_input_3",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qs1bu_8n5k6l",
+      "fromPortId": "node_mt6qplgf_3dh4zh_split_0",
+      "toPortId": "node_mt6qm251_c06g66_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qs2vl_vdudhx",
+      "fromPortId": "node_mt6qplgf_3dh4zh_split_1",
+      "toPortId": "node_mt6qm4xw_ro83a0_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qs8em_u3i084",
+      "fromPortId": "node_mt6qp4q4_ersbo0_output",
+      "toPortId": "node_mt6qm251_c06g66_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qsh3k_v4bnv1",
+      "fromPortId": "node_mt6qomcw_wn91os_split_0",
+      "toPortId": "node_mt6qm2j4_umprmn_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qskmk_qrapo3",
+      "fromPortId": "node_mt6qomcw_wn91os_split_1",
+      "toPortId": "node_mt6qm4xw_ro83a0_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qsu08_57zxm0",
+      "fromPortId": "node_mt6qpllr_7i241l_split_0",
+      "toPortId": "node_mt6qm2j4_umprmn_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qsw39_7z97ey",
+      "fromPortId": "node_mt6qpllr_7i241l_split_1",
+      "toPortId": "node_mt6qm2ec_wztzot_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qt6s2_10frz3",
+      "fromPortId": "node_mt6qogj2_z0bt33_output",
+      "toPortId": "node_mt6qm2j4_umprmn_input_4",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qtgj8_hcnm7e",
+      "fromPortId": "node_mt6qorz9_tmgpgm_output",
+      "toPortId": "node_mt6qm4xw_ro83a0_input_1",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qts53_vyrid9",
+      "fromPortId": "node_mt6qp97e_5gt2to_output",
+      "toPortId": "node_mt6qm2ec_wztzot_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qtu10_1o0h4f",
+      "fromPortId": "node_mt6qplbf_gcpuc0_split_0",
+      "toPortId": "node_mt6qm2ec_wztzot_input_2",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qtvak_vawkg3",
+      "fromPortId": "node_mt6qplbf_gcpuc0_split_1",
+      "toPortId": "node_mt6qm29i_fg474l_input_0",
+      "dataType": "letter"
+    },
+    {
+      "id": "connection_mt6qtzld_tm84zq",
+      "fromPortId": "node_mt6qoyew_07cr9e_output",
+      "toPortId": "node_mt6qm29i_fg474l_input_4",
+      "dataType": "letter"
+    }
+  ]
+}

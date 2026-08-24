@@ -132,23 +132,6 @@ const MACHINE_DEFINITIONS = Object.freeze({
 });
 
 
-/*
- * 用户之后可以直接将两个固定模板 JSON 填入这里。
- *
- * 例如：
- *
- * template1: {
- *     version: 1,
- *     nodes: [...],
- *     connections: [...]
- * }
- */
-const BUILTIN_TEMPLATES = {
-    template1: null,
-    template2: null
-};
-
-
 const NODE_SIZES = Object.freeze({
     source: {
         width: 86,
@@ -282,6 +265,24 @@ let factoryScene = null;
 let toastTimer = null;
 
 let currentPageSnapshot = null;
+
+
+/* ============================================================
+   SPECIAL AUDIO
+   ============================================================ */
+
+const neverGonnaAudio =
+    new Audio(
+        "./phaser/music.mp3"
+    );
+
+
+neverGonnaAudio.preload =
+    "auto";
+
+
+neverGonnaAudio.volume =
+    1;
 
 
 /* ============================================================
@@ -6043,6 +6044,23 @@ DOM.lever.addEventListener(
         );
 
 
+        if (
+            containsNeverGonnaGiveYouUp(
+                result.poem
+            )
+        ) {
+
+            playNeverGonnaMusic();
+        }
+        else {
+
+            neverGonnaAudio.pause();
+
+            neverGonnaAudio.currentTime =
+                0;
+        }
+
+
         openGeneratedPoem(
             result.poem
         );
@@ -6313,21 +6331,12 @@ function saveCurrentPageSnapshot() {
    BUILTIN TEMPLATES
    ============================================================ */
 
-function loadBuiltInTemplate(
-    key
+async function loadTemplateJson(
+    filePath,
+    successMessage
 ) {
 
-    const template =
-        BUILTIN_TEMPLATES[key];
-
-
-    if (!template) {
-
-        showToast(
-            key === "template1"
-                ? "Template 1 is not installed yet."
-                : "Template 2 is not installed yet."
-        );
+    if (!factoryScene) {
 
         return;
     }
@@ -6335,26 +6344,107 @@ function loadBuiltInTemplate(
 
     try {
 
+        const response =
+            await fetch(
+                filePath,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+
+        const data =
+            await response.json();
+
+
+        currentPageSnapshot =
+            deepClone(
+                factoryScene.serialize()
+            );
+
+
         factoryScene
             .loadSerialized(
                 deepClone(
-                    template
+                    data
                 )
             );
 
 
         showToast(
-            key === "template1"
-                ? "Template 1 loaded."
-                : "Template 2 loaded."
+            successMessage
         );
     }
     catch (error) {
 
-        console.error(error);
+        console.error(
+            `Unable to load ${filePath}:`,
+            error
+        );
+
 
         showToast(
-            "Invalid template data."
+            "Unable to load this example."
+        );
+    }
+}
+
+
+function containsNeverGonnaGiveYouUp(
+    text
+) {
+
+    if (
+        typeof text !==
+        "string"
+    ) {
+
+        return false;
+    }
+
+
+    return text
+        .toLowerCase()
+        .includes(
+            "never gonna give you up"
+        );
+}
+
+
+function playNeverGonnaMusic() {
+
+    neverGonnaAudio.pause();
+
+    neverGonnaAudio.currentTime =
+        0;
+
+
+    const playResult =
+        neverGonnaAudio.play();
+
+
+    if (
+        playResult &&
+        typeof playResult.catch ===
+            "function"
+    ) {
+
+        playResult.catch(
+            error => {
+
+                console.warn(
+                    "Audio playback was blocked:",
+                    error
+                );
+            }
         );
     }
 }
@@ -6407,8 +6497,9 @@ DOM.template1Btn
         "click",
         () => {
 
-            loadBuiltInTemplate(
-                "template1"
+            loadTemplateJson(
+                "./sunday.json",
+                "Example loaded."
             );
         }
     );
@@ -6419,8 +6510,9 @@ DOM.template2Btn
         "click",
         () => {
 
-            loadBuiltInTemplate(
-                "template2"
+            loadTemplateJson(
+                "./never.json",
+                "NoPoemHere loaded."
             );
         }
     );
@@ -6582,7 +6674,7 @@ window.addEventListener(
    PoetryFactory.clear()
    PoetryFactory.load({...})
    
-   可以直接拿 serialize 结果填进 BUILTIN_TEMPLATES。
+   可以直接拿 serialize 结果保存为 JSON 模板文件。
    ============================================================ */
 
 window.PoetryFactory = {
